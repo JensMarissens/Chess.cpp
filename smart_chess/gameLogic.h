@@ -4,5 +4,8 @@
 class gameLogic
 {
 
-
-}
+public:
+    gameLogic();
+    
+    bool validMove();
+};

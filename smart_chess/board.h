@@ -9,7 +9,6 @@ public:
     
     void readBoard();
 
-private:
     void initBoard();
     void initDebugBoard();
 };

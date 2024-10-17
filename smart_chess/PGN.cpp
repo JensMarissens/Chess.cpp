@@ -1,4 +1,8 @@
 #include <Arduino.h>
-#include "pgn.h"
+#include "PGN.h"
 
-void 
+PGN pgn;
+
+void initPGNArray(){
+    
+}
