@@ -50,11 +50,12 @@ void board::readBoard()
         digitalWrite(6, S2);
         digitalWrite(7, S3);
 
-        int reading = analogRead(A3);
-        char tempA2 = (reading > 700) ? 'W' : (reading < 400) ? 'B'
-                                                               : 'E'; // Handle the in-between case as needed
-        char tempA3 = (reading > 700) ? 'W' : (reading < 400) ? 'B'
-                                                               : 'E'; // Handle the in-between case as needed
+        int readingA2 = analogRead(A2);
+        int readingA3 = analogRead(A3);
+        char tempA2 = (readingA2 > 700) ? 'W' : (readingA2 < 300) ? 'B'
+                                                              : 'E'; // Handle the in-between case as needed
+        char tempA3 = (readingA3 > 700) ? 'W' : (readingA3 < 400) ? 'B'
+                                                              : 'E'; // Handle the in-between case as needed
 
         // Read the analog input
         boardReadings[15 - i] = 'E';
