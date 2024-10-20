@@ -52,14 +52,14 @@ void board::readBoard()
 
         int readingA2 = analogRead(A2);
         int readingA3 = analogRead(A3);
-        char tempA2 = (readingA2 > 700) ? 'W' : (readingA2 < 300) ? 'B'
-                                                              : 'E'; // Handle the in-between case as needed
-        char tempA3 = (readingA3 > 700) ? 'W' : (readingA3 < 400) ? 'B'
-                                                              : 'E'; // Handle the in-between case as needed
+        char tempA2 = (readingA2 > 700) ? 'I' : (readingA2 < 300) ? 'O'
+                                                              : 'X'; // Handle the in-between case as needed
+        char tempA3 = (readingA3 > 700) ? 'I' : (readingA3 < 400) ? 'O'
+                                                              : 'X'; // Handle the in-between case as needed
 
         // Read the analog input
-        boardReadings[15 - i] = 'E';
-        boardReadings[31 - i] = 'E';
+        boardReadings[15 - i] = 'X';
+        boardReadings[31 - i] = 'X';
         boardReadings[47 - i] = tempA2;
         boardReadings[63 - i] = tempA3;
     }
