@@ -5,11 +5,20 @@
 
 board chessboard;
 
-void startGame(){
+gameState::gameState() {}
+
+void gameState::startGame()
+{
 
     chessboard.initBoard();
     chessboard.initDebugBoard();
 
-    
-    chessboard.readBoard();
+    while (true)
+    {
+        chessboard.readBoard();
+        chessboard.printDebugBoard();
+        //chessboard.printBoard();
+
+        delay(1000);
+    }
 }

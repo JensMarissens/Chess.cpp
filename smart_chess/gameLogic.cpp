@@ -1,8 +1,9 @@
-#include <Arduino.h>
+#include <stdio.h>
 #include "gameLogic.h"
 
-gameLogic gl;
 
-void validMove(){
+gameLogic::gameLogic(){}
+
+bool gameLogic::validMove(){
     
 }

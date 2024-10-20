@@ -9,3 +9,5 @@ public:
     
     bool validMove();
 };
+
+#endif
