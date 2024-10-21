@@ -72,10 +72,8 @@ void board::readBoard()
 
 char board::writeBoard(int pin)
 {
-    int reading = analogRead(pin);
-    char temp = (reading > 700) ? 'I' : (reading < 300) ? 'O'
-                                                        : 'X'; // Handle the in-between case as needed
-    return temp;
+    return (analogRead(pin) > 700) ? 'I' : (analogRead(pin) < 300) ? 'O'
+                                                                   : 'X'; // Handle the in-between case as needed
 }
 
 void board::printDebugBoard() //   Create debug class and put all debug functions in there for readability
