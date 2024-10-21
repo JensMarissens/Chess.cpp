@@ -50,8 +50,8 @@ void board::readBoard()
         digitalWrite(6, S2);
         digitalWrite(7, S3);
 
-        int readingA2 = analogRead(A0);
-        int readingA3 = analogRead(A1);
+        int readingA0 = analogRead(A0);
+        int readingA1 = analogRead(A1);
         int readingA2 = analogRead(A2);
         int readingA3 = analogRead(A3);
         
