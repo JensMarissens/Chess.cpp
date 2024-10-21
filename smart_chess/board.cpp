@@ -1,10 +1,6 @@
 #include <Arduino.h>
 #include "board.h"
 
-// #include "PGN.h"
-
-// PGN pgn;
-
 board::board()
 {
     initDebugBoard();

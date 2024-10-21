@@ -2,6 +2,9 @@
 #include "gameState.h"
 
 #include "board.h"
+#include "debug.h"
+
+debug debuggy;
 
 board chessboard;
 
@@ -11,12 +14,12 @@ void gameState::startGame()
 {
 
     chessboard.initBoard();
-    chessboard.initDebugBoard();
+    debuggy.initDebugBoard();
 
     while (true)
     {
         chessboard.readBoard();
-        chessboard.printDebugBoard();
+        debuggy.printDebugBoard();
         //chessboard.printBoard();
 
         delay(1000);
