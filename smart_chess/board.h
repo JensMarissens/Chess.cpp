@@ -9,7 +9,7 @@ public:
 
   void initBoard();
   void readBoard();
-  void writeBoard();
+  char writeBoard(int reading);
   void printBoard();
 
   /*DEBUG FUNCTIONS*/

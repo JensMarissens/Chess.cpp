@@ -50,25 +50,10 @@ void board::readBoard()
         digitalWrite(6, S2);
         digitalWrite(7, S3);
 
-        int readingA0 = analogRead(A0);
-        int readingA1 = analogRead(A1);
-        int readingA2 = analogRead(A2);
-        int readingA3 = analogRead(A3);
-        
-        char tempA0 = (readingA2 > 700) ? 'I' : (readingA2 < 300) ? 'O'
-                                                              : 'X'; // Handle the in-between case as needed
-        char tempA1 = (readingA2 > 700) ? 'I' : (readingA2 < 300) ? 'O'
-                                                              : 'X'; // Handle the in-between case as needed
-        char tempA2 = (readingA2 > 700) ? 'I' : (readingA2 < 300) ? 'O'
-                                                              : 'X'; // Handle the in-between case as needed
-        char tempA3 = (readingA3 > 700) ? 'I' : (readingA3 < 400) ? 'O'
-                                                              : 'X'; // Handle the in-between case as needed
-
-        // Read the analog input
-        boardReadings[15 - i] = '1';
-        boardReadings[31 - i] = '2';
-        boardReadings[47 - i] = tempA2;
-        boardReadings[63 - i] = tempA3;
+        boardReadings[15 - i] = '1'; // writeBoard(0);
+        boardReadings[31 - i] = '2'; // writeBoard(1);
+        boardReadings[47 - i] = writeBoard(2);
+        boardReadings[63 - i] = writeBoard(3);
     }
 
     for (int col = 0; col < 4; col++)
@@ -85,7 +70,15 @@ void board::readBoard()
     }
 }
 
-void board::printDebugBoard()          //   Create debug class and put all debug functions in there for readability
+char board::writeBoard(int pin)
+{
+    int reading = analogRead(pin);
+    char temp = (reading > 700) ? 'I' : (reading < 300) ? 'O'
+                                                        : 'X'; // Handle the in-between case as needed
+    return temp;
+}
+
+void board::printDebugBoard() //   Create debug class and put all debug functions in there for readability
 {
 
     for (int row = 0; row < 8; row++)
