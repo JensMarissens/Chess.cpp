@@ -105,7 +105,7 @@ void board::printBoard()
     Serial.println("----------------------------------------------------------");
 }
 
-void board::validMove() {
+/*bool*/ void board::validMove() {
     String test;
 
     Serial.println("Reading and assigning in 3s");
@@ -138,7 +138,9 @@ void board::validMove() {
     // Print the differences
     if (test.length() > 0) {
         Serial.println(test);
+//return true;
     } else {
         Serial.println("No differences found.");
+//return false;
     }
 }
