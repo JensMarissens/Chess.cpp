@@ -119,6 +119,7 @@ void board::validMove() {
         }
     }
 
+    printDebugBoard();
 
     Serial.println("Reading again and checking in 3s");
     delay(3000);
@@ -132,6 +133,8 @@ void board::validMove() {
             }
         }
     }
+
+    printDebugBoard();
 
     Serial.print("Result: ");
 
