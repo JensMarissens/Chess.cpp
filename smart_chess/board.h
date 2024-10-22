@@ -12,11 +12,17 @@ public:
   char writeBoard(int reading);
   void printBoard();
 
-  /*DEBUG FUNCTIONS*/
+  /*DEBUG FUNCTIONS VARS*/
   void initDebugBoard();
   void printDebugBoard();
   char debugBoard[8][8];
-  /*END DEBUG FUNCTIONS*/
+  /*END DEBUG FUNCTIONS VARS*/
+
+
+  /*GAMELOGIC FUNCTIONS VARS*/
+  void validMove();
+  char tempBoard[8][8];
+  /*END GAMELOGIC FUNCTIONS VARS*/
 
   /*HARDWARE VARIABLES*/
   uint8_t S0;

@@ -104,3 +104,41 @@ void board::printBoard()
     }
     Serial.println("----------------------------------------------------------");
 }
+
+void board::validMove() {
+    String test;
+
+    Serial.println("Reading and assigning in 3s");
+    delay(3000);
+    readBoard();
+
+    // Copy the debugBoard to tempBoard
+    for (size_t i = 0; i < 8; i++) {
+        for (size_t j = 0; j < 8; j++) {
+            tempBoard[i][j] = debugBoard[i][j];
+        }
+    }
+
+
+    Serial.println("Reading again and checking in 3s");
+    delay(3000);
+    readBoard();
+
+    // Check for differences
+    for (size_t i = 0; i < 8; i++) {
+        for (size_t j = 0; j < 8; j++) {
+            if (debugBoard[i][j] != tempBoard[i][j] /*tempBoard[i][j] != debugBoard[i][j]*/) {
+                test += char(j+97) + String(7-i+1) + ":";
+            }
+        }
+    }
+
+    Serial.print("Result: ");
+
+    // Print the differences
+    if (test.length() > 0) {
+        Serial.println(test);
+    } else {
+        Serial.println("No differences found.");
+    }
+}

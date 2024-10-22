@@ -5,6 +5,7 @@ gameLogic::gameLogic() {}
 
 bool gameLogic::validMove()
 {
+
 }
 
 /*void registerMove()
