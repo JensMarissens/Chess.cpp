@@ -15,12 +15,9 @@ void gameState::startGame()
 
     while (true)
     {
-        //chessboard.readBoard();
         chessboard.validMove();
 
         //chessboard.printDebugBoard();
         //chessboard.printBoard();
-
-        delay(1000);
     }
 }

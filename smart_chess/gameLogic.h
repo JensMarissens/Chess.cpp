@@ -9,8 +9,8 @@ public:
     
     bool validMove();
 
-    char prevArr[8][8];
-    char arr[8][8];
+    //char prevArr[8][8];
+    //char arr[8][8];
 };
 
 #endif
