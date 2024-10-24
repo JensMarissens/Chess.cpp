@@ -10,7 +10,7 @@ move gameLogic::validMove()
 {
     move turnMove;
 
-    String test;
+    String test = "";
 
     Serial.println("Reading and assigning in 3s");
     delay(3000);
@@ -36,9 +36,9 @@ move gameLogic::validMove()
     {
         for (size_t j = 0; j < 8; j++)
         {
-            if (chessbrd.debugBoard[i][j] != chessbrd.tempBoard[i][j])
+            if (chessbrd.tempBoard[i][j] != chessbrd.debugBoard[i][j])
             {
-                test += char(j + 97) + String(7 - i + 1) + ":"; // Seems to work, appears the problem is hardware. String doesn't get reset so we didn't see.
+                test += char(j + 97) + String(7 - i + 1) + ":"; //it's assigning them backwards
             }
         }
     }
@@ -56,9 +56,7 @@ move gameLogic::validMove()
     else
     {
         Serial.println("No differences found.");
-        // return false;
     }
 
-    test = "";
     return turnMove;
 }

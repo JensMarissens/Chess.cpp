@@ -25,4 +25,6 @@ void PGN::writePGNArray(String PGNnotation)
 
     Serial.print("Recorded PGN for current turn: ");
     Serial.println(test);
+    
+    test = "";
 }
