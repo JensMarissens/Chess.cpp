@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include "PGN.h"
 #include "gameState.h"
 
 gameState gs;

@@ -52,7 +52,7 @@ void board::readBoard()
         boardReadings[63 - i] = writeBoard(3);
     }
 
-    for (int col = 0; col < 4; col++)
+    for (int col = 0; col < 4; col++) // Rewrite and add to above array? Or keep seperate for readability?
     {
         for (int row = 0; row < 4; row++)
         {
@@ -69,7 +69,7 @@ void board::readBoard()
 char board::writeBoard(int pin)
 {
     return (analogRead(pin) > 700) ? 'I' : (analogRead(pin) < 300) ? 'O'
-                                                                   : 'X'; // Handle the in-between case as needed
+                                                                   : 'X';
 }
 
 void board::printDebugBoard() //   Create debug class and put all debug functions in there for readability

@@ -1,5 +1,13 @@
-/*#ifndef pgn_h
+#ifndef pgn_h
 #define pgn_h
+
+
+struct move
+  {
+    bool isValid = false;
+    String PGNnotation;
+  };
+
 
 class PGN
 {
@@ -7,8 +15,12 @@ class PGN
 public:
     PGN();
     void initPGNArray();
-    void writePGNArray();
+    void writePGNArray(String PGNnotation);
     char* exportPGN();
+
+
+
+    move validMove();
 };
 
-#endif*/
+#endif
