@@ -25,6 +25,12 @@ void loop()
 
   if (startGame)
   {
+    //Temp Serial Monitor clear
+    for (size_t i = 0; i < 10; i++)
+    {
+      Serial.println();
+    }
+
     Serial.println("Starting game");
     gs.startGame();
     Serial.println("Game ended");

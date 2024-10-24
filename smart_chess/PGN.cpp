@@ -27,4 +27,10 @@ void PGN::writePGNArray(String PGNnotation)
     Serial.println(test);
     
     test = "";
+
+    //Temp Serial Monitor clear
+    for (size_t i = 0; i < 10; i++)
+    {
+      Serial.println();
+    }
 }

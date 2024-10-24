@@ -6,57 +6,51 @@ board chessbrd;
 
 gameLogic::gameLogic() {}
 
-move gameLogic::validMove()
-{
-    move turnMove;
+move gameLogic::validMove() {
+  move turnMove;
+  String test;  // Use String array for storing moves
 
-    String test = "";
+  //bool emptied = false;
+  //bool filled = false;
+  int moveCount = 0;
+  String pieceType = "N";  // Replace with actual piece type
 
-    Serial.println("Reading and assigning in 3s");
-    delay(3000);
-    chessbrd.readBoard();
+  Serial.println("Reading and assigning in 3s");
+  delay(3000);
+  chessbrd.readBoard();
 
-    // Copy the debugBoard to tempBoard
-    for (size_t i = 0; i < 8; i++)
-    {
-        for (size_t j = 0; j < 8; j++)
-        {
-            chessbrd.tempBoard[i][j] = chessbrd.debugBoard[i][j];
-        }
+  // Copy the debugBoard to tempBoard
+  for (size_t i = 0; i < 8; i++) {
+    for (size_t j = 0; j < 8; j++) {
+      chessbrd.tempBoard[i][j] = chessbrd.debugBoard[i][j];
     }
+  }
 
-    chessbrd.printDebugBoard();
+  chessbrd.printDebugBoard();
 
-    Serial.println("Reading again and checking in 3s");
-    delay(3000);
-    chessbrd.readBoard();
+  Serial.println("Reading again and checking in 3s");
+  delay(3000);
+  chessbrd.readBoard();
 
-    // Check for differences
-    for (size_t i = 0; i < 8; i++)
-    {
-        for (size_t j = 0; j < 8; j++)
-        {
-            if (chessbrd.tempBoard[i][j] != chessbrd.debugBoard[i][j])
-            {
-                test += char(j + 97) + String(7 - i + 1) + ":"; //it's assigning them backwards
-            }
-        }
+  // Check for differences
+  for (size_t i = 0; i < 8; i++) {
+    for (size_t j = 0; j < 8; j++) {
+      if (chessbrd.debugBoard[i][j] != 'X') { //Record the tile that got filled.
+        test = "Move number." + pieceType + String(char(j + 97)) + String(7 - i + 1); 
+        moveCount++;
+      }
     }
+  }
 
-    chessbrd.printDebugBoard();
+  chessbrd.printDebugBoard();
 
-    Serial.print("Result: ");
+  Serial.print("Result: ");
 
-    // Print the differences
-    if (test.length() > 0)
-    {
-        turnMove.isValid = true;
-        turnMove.PGNnotation = test;
-    }
-    else
-    {
-        Serial.println("No differences found.");
-    }
-
-    return turnMove;
+  if (moveCount > 1) { //Emptied and filled to make sure the piece was inthe correct starting location. (For movementCheck later).
+    turnMove.isValid = true;
+    turnMove.PGNnotation = test;
+  } else {
+    Serial.println("No differences found.");
+  }
+  return turnMove;
 }
