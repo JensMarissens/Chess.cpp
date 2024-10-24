@@ -2,8 +2,10 @@
 #include "gameState.h"
 
 #include "board.h"
+#include "PGN.h"
 
 board chessboard;
+PGN pgn;
 
 gameState::gameState() {}
 
@@ -15,7 +17,13 @@ void gameState::startGame()
 
     while (true)
     {
-        chessboard.validMove();
+        move currentMove = chessboard.validMove();
+        
+        if (currentMove.isValid)
+        {
+            pgn.writePGNArray(currentMove.PGNnotation);
+        };
+        
 
         //chessboard.printDebugBoard();
         //chessboard.printBoard();

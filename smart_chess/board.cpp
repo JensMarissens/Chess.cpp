@@ -56,7 +56,7 @@ void board::readBoard()
         boardReadings[63 - i] = writeBoard(3);
     }
 
-    for (int col = 0; col < 4; col++) //Rewrite and add to above array? Or keep seperate for readability?
+    for (int col = 0; col < 4; col++) // Rewrite and add to above array? Or keep seperate for readability?
     {
         for (int row = 0; row < 4; row++)
         {
@@ -105,7 +105,10 @@ void board::printBoard()
     Serial.println("----------------------------------------------------------");
 }
 
-/*bool*/ void board::validMove() {
+move board::validMove() // To be moved to gameLogic once it works
+{
+    move turnMove;
+
     String test;
 
     Serial.println("Reading and assigning in 3s");
@@ -113,8 +116,10 @@ void board::printBoard()
     readBoard();
 
     // Copy the debugBoard to tempBoard
-    for (size_t i = 0; i < 8; i++) {
-        for (size_t j = 0; j < 8; j++) {
+    for (size_t i = 0; i < 8; i++)
+    {
+        for (size_t j = 0; j < 8; j++)
+        {
             tempBoard[i][j] = debugBoard[i][j];
         }
     }
@@ -126,10 +131,13 @@ void board::printBoard()
     readBoard();
 
     // Check for differences
-    for (size_t i = 0; i < 8; i++) {
-        for (size_t j = 0; j < 8; j++) {
-            if (debugBoard[i][j] != tempBoard[i][j] /*tempBoard[i][j] != debugBoard[i][j]*/) {
-                test += char(j+97) + String(7-i+1) + ":";
+    for (size_t i = 0; i < 8; i++)
+    {
+        for (size_t j = 0; j < 8; j++)
+        {
+            if (debugBoard[i][j] != tempBoard[i][j])
+            {
+                test += char(j + 97) + String(7 - i + 1) + ":";
             }
         }
     }
@@ -139,11 +147,16 @@ void board::printBoard()
     Serial.print("Result: ");
 
     // Print the differences
-    if (test.length() > 0) {
-        Serial.println(test);
-//return true;
-    } else {
-        Serial.println("No differences found.");
-//return false;
+    if (test.length() > 0)
+    {
+        turnMove.isValid = true;
+        turnMove.PGNnotation = test;
     }
+    else
+    {
+        Serial.println("No differences found.");
+        // return false;
+    }
+
+    return turnMove;
 }

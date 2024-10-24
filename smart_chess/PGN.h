@@ -1,4 +1,4 @@
-/*#ifndef pgn_h
+#ifndef pgn_h
 #define pgn_h
 
 class PGN
@@ -7,8 +7,8 @@ class PGN
 public:
     PGN();
     void initPGNArray();
-    void writePGNArray();
+    void writePGNArray(String PGNnotation);
     char* exportPGN();
 };
 
-#endif*/
+#endif

@@ -1,6 +1,12 @@
 #ifndef board_h
 #define board_h
 
+struct move
+  {
+    bool isValid = false;
+    String PGNnotation;
+  };
+
 class board
 {
 
@@ -18,9 +24,8 @@ public:
   char debugBoard[8][8];
   /*END DEBUG FUNCTIONS VARS*/
 
-
   /*GAMELOGIC FUNCTIONS VARS*/
-  void validMove();
+  move validMove();
   char tempBoard[8][8];
   /*END GAMELOGIC FUNCTIONS VARS*/
 
@@ -38,9 +43,9 @@ public:
       {'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'}, // Black
       {'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'}, // Black
       {'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'},
-      {'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'}, 
-      {'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'}, 
-      {'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'}, 
+      {'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'},
+      {'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'},
+      {'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'},
       {'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'}, // White
       {'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}  // White
   };
