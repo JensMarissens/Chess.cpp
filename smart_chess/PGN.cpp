@@ -2,7 +2,7 @@
 #include "PGN.h"
 #include "board.h"
 
-board chessbrd;
+//board chessbrd;
 
 PGN::PGN() {}
 
@@ -28,7 +28,7 @@ void PGN::writePGNArray(String PGNnotation)
     Serial.print("Recorded PGN for current turn: ");
     Serial.println(test);
 }
-
+/*
 move PGN::validMove() // To be moved to gameLogic once it works
 {
     move turnMove;
@@ -85,3 +85,4 @@ move PGN::validMove() // To be moved to gameLogic once it works
     test = "";
     return turnMove;
 }
+*/

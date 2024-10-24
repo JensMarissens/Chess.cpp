@@ -3,9 +3,11 @@
 
 #include "board.h"
 #include "PGN.h"
+#include "gameLogic.h"
 
 board chessboard;
 PGN pgn;
+gameLogic gl;
 
 gameState::gameState() {}
 
@@ -17,7 +19,7 @@ void gameState::startGame()
 
     while (true)
     {
-        move currentMove = pgn.validMove();
+        move currentMove = gl.validMove();
         
         if (currentMove.isValid)
         {

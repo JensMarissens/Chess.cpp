@@ -1,13 +1,13 @@
 #ifndef pgn_h
 #define pgn_h
 
-
+/*
 struct move
   {
     bool isValid = false;
     String PGNnotation;
   };
-
+*/
 
 class PGN
 {
@@ -20,7 +20,7 @@ public:
 
 
 
-    move validMove();
+    //move validMove();
 };
 
 #endif
