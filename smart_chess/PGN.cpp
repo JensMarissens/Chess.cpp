@@ -12,22 +12,22 @@ void PGN::initPGNArray()
     {
         for (int j = 0; j < 8; j++)
         {
-            //chessbrd.pieceType[i][j] = chessbrd.startCondition[i][j];
-            // measurements[i][j] = 0;
-            //Serial.println(String(chessbrd.pieceType[i][j]) + "\t");
+            // chessbrd.pieceType[i][j] = chessbrd.startCondition[i][j];
+            //  measurements[i][j] = 0;
+            // Serial.println(String(chessbrd.pieceType[i][j]) + "\t");
         }
     }
     Serial.println("initPGNArray");
 }
 
-void PGN::writePGNArray(String PGNnotation){
+void PGN::writePGNArray(String PGNnotation)
+{
 
     String test = PGNnotation;
 
     Serial.print("Recorded PGN for current turn: ");
     Serial.println(test);
 }
-
 
 move PGN::validMove() // To be moved to gameLogic once it works
 {
@@ -61,7 +61,7 @@ move PGN::validMove() // To be moved to gameLogic once it works
         {
             if (chessbrd.debugBoard[i][j] != chessbrd.tempBoard[i][j])
             {
-                test += char(j + 97) + String(7 - i + 1) + ":";
+                test += char(j + 97) + String(7 - i + 1) + ":"; // Seems to work, appears the problem is hardware. String doesn't get reset so we didn't see.
             }
         }
     }
@@ -82,5 +82,6 @@ move PGN::validMove() // To be moved to gameLogic once it works
         // return false;
     }
 
+    test = "";
     return turnMove;
 }

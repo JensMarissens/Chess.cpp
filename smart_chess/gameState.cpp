@@ -13,7 +13,7 @@ void gameState::startGame()
 {
 
     chessboard.initBoard();
-    debuggy.initDebugBoard();
+    chessboard.initDebugBoard();
 
     while (true)
     {
@@ -24,7 +24,7 @@ void gameState::startGame()
             pgn.writePGNArray(currentMove.PGNnotation);
         };
         
-=======
+    
         //chessboard.printDebugBoard();
         //chessboard.printBoard();
     }
