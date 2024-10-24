@@ -1,11 +1,5 @@
 #ifndef board_h
-#define board_h
-
-struct move
-  {
-    bool isValid = false;
-    String PGNnotation;
-  };
+#define board_
 
 class board
 {
@@ -25,7 +19,6 @@ public:
   /*END DEBUG FUNCTIONS VARS*/
 
   /*GAMELOGIC FUNCTIONS VARS*/
-  move validMove();
   char tempBoard[8][8];
   /*END GAMELOGIC FUNCTIONS VARS*/
 

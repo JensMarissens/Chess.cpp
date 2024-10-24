@@ -1,10 +1,6 @@
 #include <Arduino.h>
 #include "board.h"
 
-// #include "PGN.h"
-
-// PGN pgn;
-
 board::board()
 {
     initDebugBoard();
@@ -103,60 +99,4 @@ void board::printBoard()
         Serial.println();
     }
     Serial.println("----------------------------------------------------------");
-}
-
-move board::validMove() // To be moved to gameLogic once it works
-{
-    move turnMove;
-
-    String test;
-
-    Serial.println("Reading and assigning in 3s");
-    delay(3000);
-    readBoard();
-
-    // Copy the debugBoard to tempBoard
-    for (size_t i = 0; i < 8; i++)
-    {
-        for (size_t j = 0; j < 8; j++)
-        {
-            tempBoard[i][j] = debugBoard[i][j];
-        }
-    }
-
-    printDebugBoard();
-
-    Serial.println("Reading again and checking in 3s");
-    delay(3000);
-    readBoard();
-
-    // Check for differences
-    for (size_t i = 0; i < 8; i++)
-    {
-        for (size_t j = 0; j < 8; j++)
-        {
-            if (debugBoard[i][j] != tempBoard[i][j])
-            {
-                test += char(j + 97) + String(7 - i + 1) + ":";
-            }
-        }
-    }
-
-    printDebugBoard();
-
-    Serial.print("Result: ");
-
-    // Print the differences
-    if (test.length() > 0)
-    {
-        turnMove.isValid = true;
-        turnMove.PGNnotation = test;
-    }
-    else
-    {
-        Serial.println("No differences found.");
-        // return false;
-    }
-
-    return turnMove;
 }

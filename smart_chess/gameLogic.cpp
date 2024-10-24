@@ -2,11 +2,11 @@
 #include "gameLogic.h"
 
 gameLogic::gameLogic() {}
-
+/*
 bool gameLogic::validMove()
 {
 
-}
+}*/
 
 /*void registerMove()
 {

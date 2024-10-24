@@ -17,7 +17,7 @@ void gameState::startGame()
 
     while (true)
     {
-        move currentMove = chessboard.validMove();
+        move currentMove = pgn.validMove();
         
         if (currentMove.isValid)
         {
