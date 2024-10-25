@@ -6,52 +6,122 @@ board chessbrd;
 
 gameLogic::gameLogic() {}
 
-move gameLogic::validMove() {
+move gameLogic::validMove()
+{
   move turnMove;
-  String test;  // Rename
+  String test; // Rename
 
-  //bool emptied = false;
-  //bool filled = false;
   int moveCount = 0;
-  String pieceType = "N";  // Replace with actual piece type
+  String pieceType = "N"; // Replace with actual piece type
 
+  // Read
   Serial.println("Reading and assigning in 3s");
   delay(3000);
   chessbrd.readBoard();
 
-  // Copy the debugBoard to tempBoard
-  for (size_t i = 0; i < 8; i++) {
-    for (size_t j = 0; j < 8; j++) {
-      chessbrd.tempBoard[i][j] = chessbrd.debugBoard[i][j];
+  // Copy
+  for (size_t i = 0; i < 8; i++)
+  {
+    for (size_t j = 0; j < 8; j++)
+    {
+      tempBoard[i][j] = chessbrd.debugBoard[i][j]; // old debugBoardVal, contains the ORIGINAL POSITION.
     }
   }
 
+  Serial.println("DebugBoard/Tempboard (copied):");
   chessbrd.printDebugBoard();
 
+  // Reread
   Serial.println("Reading again and checking in 3s");
   delay(3000);
-  chessbrd.readBoard();
+  chessbrd.readBoard(); // DEBUGBOARD NOW CONTAINS THE NEW POSITION, THE PREVIOUS ONE SHOULD HAVE TURNED TO X
 
-  // Check for differences
-  for (size_t i = 0; i < 8; i++) {
-    for (size_t j = 0; j < 8; j++) {
-      if (chessbrd.debugBoard[i][j] != 'X') { //Record the tile that got filled.
-        test = "Move number." + pieceType + String(char(j + 97)) + String(7 - i + 1); 
+  Serial.println("DebugBoard (uncopied):");
+  chessbrd.printDebugBoard();
+
+  // Compare White
+  for (size_t i = 0; i < 8; i++)
+  {
+    for (size_t j = 0; j < 8; j++)
+    {
+      if (tempBoard[i][j] != chessbrd.debugBoard[i][j] && tempBoard[i][j] == 'I') // chessbrd.debugBoard[i][j] != 'X')
+      {                                                                           // Record the tile that got emptied.
+
+        Serial.println(String(i) + String(j) + ":" + chessbrd.debugBoard[i][j]);
+        test = "W Start pos." + pieceType + String(char(j + 97)) + String(7 - i + 1);
         moveCount++;
       }
-    }//extra check for piece color. Per 
-// move I then O. concat, store in 
-// String, push to array.
+    }
+    // extra check for piece color. Per
+    // move I then O. concat, store in
+    // String, push to array.
   }
 
-  chessbrd.printDebugBoard();
+  for (size_t i = 0; i < 8; i++)
+  {
+    for (size_t j = 0; j < 8; j++)
+    {
+      if (tempBoard[i][j] != chessbrd.debugBoard[i][j] && chessbrd.debugBoard[i][j] == 'I') // chessbrd.debugBoard[i][j] != 'X')
+      {                                                                                     // Record the tile that got filled.
+
+        Serial.println(String(i) + String(j) + ":" + chessbrd.debugBoard[i][j]);
+        test += "\tW Move number." + pieceType + String(char(j + 97)) + String(7 - i + 1);
+        moveCount++;
+      }
+    }
+    // extra check for piece color. Per
+    // move I then O. concat, store in
+    // String, push to array.
+  }
+
+
+  // Compare Black
+  for (size_t i = 0; i < 8; i++)
+  {
+    for (size_t j = 0; j < 8; j++)
+    {
+      if (tempBoard[i][j] != chessbrd.debugBoard[i][j] && tempBoard[i][j] == 'O') // chessbrd.debugBoard[i][j] != 'X')
+      {                                                                           // Record the tile that got emptied.
+
+        Serial.println(String(i) + String(j) + ":" + chessbrd.debugBoard[i][j]);
+        test = "B Start pos." + pieceType + String(char(j + 97)) + String(7 - i + 1);
+        moveCount++;
+      }
+    }
+    // extra check for piece color. Per
+    // move I then O. concat, store in
+    // String, push to array.
+  }
+
+  for (size_t i = 0; i < 8; i++)
+  {
+    for (size_t j = 0; j < 8; j++)
+    {
+      if (tempBoard[i][j] != chessbrd.debugBoard[i][j] && chessbrd.debugBoard[i][j] == 'O') // chessbrd.debugBoard[i][j] != 'X')
+      {                                                                                     // Record the tile that got filled.
+
+        Serial.println(String(i) + String(j) + ":" + chessbrd.debugBoard[i][j]);
+        test += "\tB Move number." + pieceType + String(char(j + 97)) + String(7 - i + 1);
+        moveCount++;
+      }
+    }
+    // extra check for piece color. Per
+    // move I then O. concat, store in
+    // String, push to array.
+  }
+
+
+
 
   Serial.print("Result: ");
 
-  if (moveCount > 1) { //Emptied and filled to make sure the piece was inthe correct starting location. (For movementCheck later).
+  if (moveCount > 1)
+  { // Emptied and filled to make sure the piece was inthe correct starting location. (For movementCheck later).
     turnMove.isValid = true;
     turnMove.PGNnotation = test;
-  } else {
+  }
+  else
+  {
     Serial.println("No differences found.");
   }
   return turnMove;

@@ -14,6 +14,7 @@ public:
     gameLogic();
 
     move validMove();
+    char tempBoard[8][8];
 };
 
 #endif

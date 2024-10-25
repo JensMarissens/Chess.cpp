@@ -18,10 +18,6 @@ public:
   char debugBoard[8][8];
   /*END DEBUG FUNCTIONS VARS*/
 
-  /*GAMELOGIC FUNCTIONS VARS*/
-  char tempBoard[8][8];
-  /*END GAMELOGIC FUNCTIONS VARS*/
-
   /*HARDWARE VARIABLES*/
   uint8_t S0;
   uint8_t S1;
