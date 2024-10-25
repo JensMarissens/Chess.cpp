@@ -2,6 +2,10 @@
 #include "gameLogic.h"
 #include "board.h"
 
+#include "piece.h"
+chessPiece chesspiece;
+
+
 board chessbrd;
 
 gameLogic::gameLogic() {}
@@ -9,7 +13,7 @@ gameLogic::gameLogic() {}
 move gameLogic::validMove()
 {
   move turnMove;
-  String test; // Rename
+  String PGNtestString; // Rename
 
   int moveCount = 0;
   String pieceType = "N"; // Replace with actual piece type
@@ -44,16 +48,16 @@ move gameLogic::validMove()
   {
     for (size_t j = 0; j < 8; j++)
     {
-      if (tempBoard[i][j] != chessbrd.debugBoard[i][j] && tempBoard[i][j] == 'I') // chessbrd.debugBoard[i][j] != 'X')
-      {                                                                           // Record the tile that got emptied.
+      if (tempBoard[i][j] != chessbrd.debugBoard[i][j] && tempBoard[i][j] == 'I')
+      {
+        chesspiece.color = 'I';
 
-        Serial.println(String(i) + String(j) + ":" + chessbrd.debugBoard[i][j]);
-        test = "W Start pos." + pieceType + String(char(j + 97)) + String(7 - i + 1);
+        Serial.println(String(i) + String(j) + ":" + chesspiece.color);
+        //PGNtestString = "W Start pos." + pieceType + String(char(j + 97)) + String(7 - i + 1);
         moveCount++;
       }
     }
-    // extra check for piece color. Per
-    // move I then O. concat, store in
+    // Per move I then O. concat, store in
     // String, push to array.
   }
 
@@ -61,35 +65,32 @@ move gameLogic::validMove()
   {
     for (size_t j = 0; j < 8; j++)
     {
-      if (tempBoard[i][j] != chessbrd.debugBoard[i][j] && chessbrd.debugBoard[i][j] == 'I') // chessbrd.debugBoard[i][j] != 'X')
-      {                                                                                     // Record the tile that got filled.
+      if (tempBoard[i][j] != chessbrd.debugBoard[i][j] && chessbrd.debugBoard[i][j] == 'I')
+      {
 
         Serial.println(String(i) + String(j) + ":" + chessbrd.debugBoard[i][j]);
-        test += "\tW Move number." + pieceType + String(char(j + 97)) + String(7 - i + 1);
+        PGNtestString += "\tW Move number." + pieceType + String(char(j + 97)) + String(7 - i + 1);
         moveCount++;
       }
     }
-    // extra check for piece color. Per
-    // move I then O. concat, store in
+    // Per move I then O. concat, store in
     // String, push to array.
   }
-
 
   // Compare Black
   for (size_t i = 0; i < 8; i++)
   {
     for (size_t j = 0; j < 8; j++)
     {
-      if (tempBoard[i][j] != chessbrd.debugBoard[i][j] && tempBoard[i][j] == 'O') // chessbrd.debugBoard[i][j] != 'X')
-      {                                                                           // Record the tile that got emptied.
+      if (tempBoard[i][j] != chessbrd.debugBoard[i][j] && tempBoard[i][j] == 'O')
+      {
 
         Serial.println(String(i) + String(j) + ":" + chessbrd.debugBoard[i][j]);
-        test = "B Start pos." + pieceType + String(char(j + 97)) + String(7 - i + 1);
+        //PGNtestString = "B Start pos." + pieceType + String(char(j + 97)) + String(7 - i + 1);
         moveCount++;
       }
     }
-    // extra check for piece color. Per
-    // move I then O. concat, store in
+    // Per move I then O. concat, store in
     // String, push to array.
   }
 
@@ -97,28 +98,22 @@ move gameLogic::validMove()
   {
     for (size_t j = 0; j < 8; j++)
     {
-      if (tempBoard[i][j] != chessbrd.debugBoard[i][j] && chessbrd.debugBoard[i][j] == 'O') // chessbrd.debugBoard[i][j] != 'X')
-      {                                                                                     // Record the tile that got filled.
+      if (tempBoard[i][j] != chessbrd.debugBoard[i][j] && chessbrd.debugBoard[i][j] == 'O') 
+      {                                                                                     
 
         Serial.println(String(i) + String(j) + ":" + chessbrd.debugBoard[i][j]);
-        test += "\tB Move number." + pieceType + String(char(j + 97)) + String(7 - i + 1);
+        PGNtestString += "\tB Move number." + pieceType + String(char(j + 97)) + String(7 - i + 1);
         moveCount++;
       }
     }
-    // extra check for piece color. Per
-    // move I then O. concat, store in
-    // String, push to array.
   }
-
-
-
 
   Serial.print("Result: ");
 
   if (moveCount > 1)
   { // Emptied and filled to make sure the piece was inthe correct starting location. (For movementCheck later).
     turnMove.isValid = true;
-    turnMove.PGNnotation = test;
+    turnMove.PGNnotation = PGNtestString;
   }
   else
   {
