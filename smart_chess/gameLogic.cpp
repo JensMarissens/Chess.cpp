@@ -8,7 +8,7 @@ gameLogic::gameLogic() {}
 
 move gameLogic::validMove() {
   move turnMove;
-  String test;  // Use String array for storing moves
+  String test;  // Rename
 
   //bool emptied = false;
   //bool filled = false;
@@ -39,7 +39,9 @@ move gameLogic::validMove() {
         test = "Move number." + pieceType + String(char(j + 97)) + String(7 - i + 1); 
         moveCount++;
       }
-    }
+    }//extra check for piece type. Per 
+// move I then O. concat, store in 
+// String, push to array.
   }
 
   chessbrd.printDebugBoard();
