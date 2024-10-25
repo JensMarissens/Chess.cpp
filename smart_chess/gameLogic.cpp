@@ -4,7 +4,7 @@
 
 #include "piece.h"
 chessPiece chesspiece;
-
+piece chp;
 
 board chessbrd;
 
@@ -54,6 +54,8 @@ move gameLogic::validMove()
 
         Serial.println(String(i) + String(j) + ":" + chesspiece.color);
         //PGNtestString = "W Start pos." + pieceType + String(char(j + 97)) + String(7 - i + 1);
+        chesspiece.coordinates[0] = i;
+        chesspiece.coordinates[1] = j;
         moveCount++;
       }
     }
@@ -70,6 +72,9 @@ move gameLogic::validMove()
 
         Serial.println(String(i) + String(j) + ":" + chessbrd.debugBoard[i][j]);
         PGNtestString += "\tW Move number." + pieceType + String(char(j + 97)) + String(7 - i + 1);
+
+        chesspiece.coordinates[2] = i;
+        chesspiece.coordinates[3] = j;
         moveCount++;
       }
     }
@@ -114,6 +119,8 @@ move gameLogic::validMove()
   { // Emptied and filled to make sure the piece was inthe correct starting location. (For movementCheck later).
     turnMove.isValid = true;
     turnMove.PGNnotation = PGNtestString;
+
+    chp.printPieceTest();
   }
   else
   {

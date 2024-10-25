@@ -4,7 +4,7 @@
 struct chessPiece{
     char color;
     char type;
-    int coordinates[2][2];
+    int coordinates[4]={1,1,1,1};
 };
 
 class piece {
