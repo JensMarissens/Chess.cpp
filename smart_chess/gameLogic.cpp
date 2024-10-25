@@ -39,7 +39,7 @@ move gameLogic::validMove() {
         test = "Move number." + pieceType + String(char(j + 97)) + String(7 - i + 1); 
         moveCount++;
       }
-    }//extra check for piece type. Per 
+    }//extra check for piece color. Per 
 // move I then O. concat, store in 
 // String, push to array.
   }
