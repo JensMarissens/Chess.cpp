@@ -56,3 +56,5 @@ move gameLogic::validMove() {
   }
   return turnMove;
 }
+
+/* Eventually the board should probably contain structs with type, color and moveSetq that gets moved around as a whole to keep the code sane*/
