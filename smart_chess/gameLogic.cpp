@@ -2,59 +2,20 @@
 #include "gameLogic.h"
 #include "globals.h"
 
+String PGNtestString;
+int moveCount = 0;
+String pieceType = "N"; // Replace with actual piece type
+
+
 gameLogic::gameLogic() {}
 
 move gameLogic::validMove(char tempBoard[8][8], char debugBoard[8][8], bool whiteFirstFlag) // RUNS TWICE
 {
   move _move;
-  String PGNtestString;
-  int moveCount = 0;
-  String pieceType = "N"; // Replace with actual piece type
 
   // Compare
-  for (size_t i = 0; i < 8; i++)
-  {
-    for (size_t j = 0; j < 8; j++)
-    {
-      if (tempBoard[i][j] != chessboard.debugBoard[i][j] && tempBoard[i][j] == 'I') // Check if piece is white
-      {
-        chesspiece.color = 'I';
-        chesspiece.coordinates[0] = i;
-        chesspiece.coordinates[1] = j;
-        moveCount++;
-      }
-      else if (tempBoard[i][j] != chessboard.debugBoard[i][j] && tempBoard[i][j] == 'O' && whiteFirstFlag == true) // Check if white piece has been read
-      {
-        chesspiece.color = 'O';
-        chesspiece.coordinates[0] = i;
-        chesspiece.coordinates[1] = j;
-        moveCount++;
-      }
-    }
-  }
-
-  for (size_t i = 0; i < 8; i++)
-  {
-    for (size_t j = 0; j < 8; j++)
-    {
-      if (tempBoard[i][j] != chessboard.debugBoard[i][j] && chessboard.debugBoard[i][j] == 'I') // Read landing position
-      {
-        chesspiece.coordinates[2] = i;
-        chesspiece.coordinates[3] = j;
-
-        PGNtestString += "W Move number." + pieceType + String(char(j + 97)) + String(7 - i + 1);
-        moveCount++;
-      }
-      else if (tempBoard[i][j] != chessboard.debugBoard[i][j] && chessboard.debugBoard[i][j] == 'O' && whiteFirstFlag == true) // Read landing position
-      {
-        chesspiece.coordinates[2] = i;
-        chesspiece.coordinates[3] = j;
-
-        PGNtestString += "B Move number." + pieceType + String(char(j + 97)) + String(7 - i + 1);
-        moveCount++;
-      }
-    }
-  }
+  compareStart(tempBoard, debugBoard, whiteFirstFlag);
+  compareLand(tempBoard, debugBoard, whiteFirstFlag); 
 
   Serial.println("Result: ");
 
@@ -75,8 +36,6 @@ move gameLogic::validMove(char tempBoard[8][8], char debugBoard[8][8], bool whit
 move gameLogic::validTurn() // RUNS ONCE, First a white has to move, then a black piece
 {
   move test;
-
-
 
   // Read
   Serial.println("Reading and assigning in 3s");
@@ -145,3 +104,52 @@ move gameLogic::validTurn() // RUNS ONCE, First a white has to move, then a blac
 }
 
 /* Eventually the board should probably contain structs with type, color and moveSet that gets moved around as a whole to keep the code sane*/
+
+void gameLogic::compareStart(char tempBoard[8][8], char debugBoard[8][8], bool whiteFirstFlag)
+{
+  for (size_t i = 0; i < 8; i++)
+  {
+    for (size_t j = 0; j < 8; j++)
+    {
+      if (tempBoard[i][j] != chessboard.debugBoard[i][j] && tempBoard[i][j] == 'I') // Check if piece is white
+      {
+        chesspiece.color = 'I';
+        chesspiece.coordinates[0] = i;
+        chesspiece.coordinates[1] = j;
+        moveCount++;
+      }
+      else if (tempBoard[i][j] != chessboard.debugBoard[i][j] && tempBoard[i][j] == 'O' && whiteFirstFlag == true) // Check if white piece has been read
+      {
+        chesspiece.color = 'O';
+        chesspiece.coordinates[0] = i;
+        chesspiece.coordinates[1] = j;
+        moveCount++;
+      }
+    }
+  }
+}
+void gameLogic::compareLand(char tempBoard[8][8], char debugBoard[8][8], bool whiteFirstFlag)
+{
+  for (size_t i = 0; i < 8; i++)
+  {
+    for (size_t j = 0; j < 8; j++)
+    {
+      if (tempBoard[i][j] != chessboard.debugBoard[i][j] && chessboard.debugBoard[i][j] == 'I') // Read landing position
+      {
+        chesspiece.coordinates[2] = i;
+        chesspiece.coordinates[3] = j;
+
+        PGNtestString += "W Move number." + pieceType + String(char(j + 97)) + String(7 - i + 1);
+        moveCount++;
+      }
+      else if (tempBoard[i][j] != chessboard.debugBoard[i][j] && chessboard.debugBoard[i][j] == 'O' && whiteFirstFlag == true) // Read landing position
+      {
+        chesspiece.coordinates[2] = i;
+        chesspiece.coordinates[3] = j;
+
+        PGNtestString += "B Move number." + pieceType + String(char(j + 97)) + String(7 - i + 1);
+        moveCount++;
+      }
+    }
+  }
+}

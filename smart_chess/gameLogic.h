@@ -14,12 +14,14 @@ public:
     gameLogic();
 
     move validMove(char tempBoard[8][8], char debugBoard[8][8], bool whiteFirstFlag);
+    //move validMove(bool whiteFirstFlag);
+    
     move validTurn();
     char tempBoard[8][8];
 
 
-    //void compareStart();
-    //void compareLand();
+    void compareStart(char tempBoard[8][8], char debugBoard[8][8], bool whiteFirstFlag);
+    void compareLand(char tempBoard[8][8], char debugBoard[8][8], bool whiteFirstFlag);
 };
 
 #endif
