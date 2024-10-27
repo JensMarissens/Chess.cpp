@@ -1,12 +1,9 @@
 #include <Arduino.h>
 #include "gameState.h"
 
-#include "board.h"
-#include "PGN.h"
+#include "globals.h"
 #include "gameLogic.h"
 
-board chessboard;
-PGN pgn;
 gameLogic gl;
 
 gameState::gameState() {}

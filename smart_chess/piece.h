@@ -4,14 +4,16 @@
 struct chessPiece{
     char color;
     char type;
-    int coordinates[4]={1,1,1,1};
+    int coordinates[4]={9,9,9,9};
 };
 
 class piece {
     public:
+    
     piece();
-
     void printPieceTest();
+
+    chessPiece pieceStruct;
 };
 
 #endif
