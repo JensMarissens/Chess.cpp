@@ -16,11 +16,12 @@ void gameState::startGame()
 
     while (true)
     {
-        move currentMove = gl.validMove();
+        //move currentMove = gl.validMove();
+        move currentTurn = gl.validTurn();
         
-        if (currentMove.isValid)
+        if (currentTurn.isValid)
         {
-            pgn.writePGNArray(currentMove.PGNnotation);
+            pgn.writePGNArray(currentTurn.PGNnotation);
         };
         
     

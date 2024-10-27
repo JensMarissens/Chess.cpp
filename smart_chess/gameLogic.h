@@ -13,8 +13,13 @@ class gameLogic
 public:
     gameLogic();
 
-    move validMove();
+    move validMove(char tempBoard[8][8], char debugBoard[8][8], bool whiteFirstFlag);
+    move validTurn();
     char tempBoard[8][8];
+
+
+    //void compareStart();
+    //void compareLand();
 };
 
 #endif
