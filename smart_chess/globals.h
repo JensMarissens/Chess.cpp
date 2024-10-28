@@ -8,6 +8,5 @@
 extern board chessboard;
 extern PGN pgn;
 extern piece chess_piece;
-extern chessPiece chesspiece;
 
 #endif

@@ -17,12 +17,12 @@ void gameState::startGame()
     while (true)
     {
         //move currentMove = gl.validMove();
-        move currentTurn = gl.validTurn();
+        //move currentTurn = gl.validTurn();
         
-        if (currentTurn.isValid)
-        {
-            pgn.writePGNArray(currentTurn.PGNnotation);
-        };
+        //if (currentTurn.isValid)
+        //{
+        //    pgn.writePGNArray(currentTurn.PGNnotation);
+        //};
         
     
         //chessboard.printDebugBoard();

@@ -6,6 +6,6 @@ piece::piece(){
 }
 
 void piece::printPieceTest() {
-    Serial.println("Starting coords:" + String(chesspiece.coordinates[1]) + String(chesspiece.coordinates[0]));
-    Serial.println("End coords:" + String(chesspiece.coordinates[3]) + String(chesspiece.coordinates[2]));
+    Serial.println("Starting coords:" + String(chess_piece.coordinates[1]) + String(chess_piece.coordinates[0]));
+    Serial.println("End coords:" + String(chess_piece.coordinates[3]) + String(chess_piece.coordinates[2]));
 }

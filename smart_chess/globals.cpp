@@ -4,4 +4,3 @@
 board chessboard;
 PGN pgn;
 piece chess_piece;
-chessPiece chesspiece;

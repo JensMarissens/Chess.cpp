@@ -2,20 +2,110 @@
 #include "gameLogic.h"
 #include "globals.h"
 
-String PGNtestString;
-int moveCount = 0;
-String pieceType = "N"; // Replace with actual piece type
-
-
 gameLogic::gameLogic() {}
 
+// placeholder vars
+char color = 'X';
+char type = 'N';
+int coordArray[4] = {9,9,9,9};
+int turn = 1;
+
+bool gameLogic::didPieceMove()
+{
+  int moveCount = 0;
+
+
+  // Read
+  chessboard.readBoard();
+  chessboard.printDebugBoard();
+
+  // Copy
+  for (size_t i = 0; i < 8; i++)
+  {
+    for (size_t j = 0; j < 8; j++)
+    {
+      tempBoard[i][j] = chessboard.debugBoard[i][j]; // old debugBoardVal, contains the ORIGINAL POSITION.
+    }
+  }
+
+  // Reread
+  Serial.println("Reading in 3s:");
+  delay(3000);
+  chessboard.readBoard();
+  chessboard.printDebugBoard();
+
+  for (size_t i = 0; i < 8; i++)
+  {
+    for (size_t j = 0; j < 8; j++)
+    {
+      if (chessboard.debugBoard[i][j] != tempBoard[i][j])
+      {
+        //coordArray[]
+        color = chessboard.debugBoard[i][j]; //It's always assigning the last read square. So doesn't work.
+        moveCount++;
+      }
+    }
+  }
+
+  // Pass params to Piece
+  chess_piece.updatePiece(color, type, coordArray);
+
+  return moveCount == 2;
+}
+
+bool gameLogic::wasItWhite()
+{
+  return color == 'I';
+}
+
+bool gameLogic::wasItValid()
+{
+  // Implement your logic here
+  return true; // Placeholder value
+}
+
+void gameLogic::storeMove(bool isValid)
+{
+  pgn.writePGNArray(String(turn) + ". " + String(type) + "r9");
+  turn++;
+}
+
+void gameRound() //does nothing so far
+{
+  gameLogic logic; // Create an instance of gameLogic
+  bool whitePlayed = false;
+
+  bool moved = logic.didPieceMove(); // Call member functions on the instance
+  bool isWhite = logic.wasItWhite();
+  bool isValid;
+
+  if (moved && isWhite) //does nothing so far
+  {
+    isValid = logic.wasItValid(); // Check if the move is valid
+
+    logic.storeMove(isValid); // Store the move
+
+    whitePlayed = true;
+    turn++;
+  }
+
+  if (moved && whitePlayed) //does nothing so far
+  {
+    logic.storeMove(isValid); // Store the move again
+
+    whitePlayed = false;
+    turn++;
+  }
+}
+
+/*
 move gameLogic::validMove(char tempBoard[8][8], char debugBoard[8][8], bool whiteFirstFlag) // RUNS TWICE
 {
   move _move;
 
   // Compare
   compareStart(tempBoard, debugBoard, whiteFirstFlag);
-  compareLand(tempBoard, debugBoard, whiteFirstFlag); 
+  compareLand(tempBoard, debugBoard, whiteFirstFlag);
 
   Serial.println("Result: ");
 
@@ -103,7 +193,7 @@ move gameLogic::validTurn() // RUNS ONCE, First a white has to move, then a blac
   };
 }
 
-/* Eventually the board should probably contain structs with type, color and moveSet that gets moved around as a whole to keep the code sane*/
+// Eventually the board should probably contain structs with type, color and moveSet that gets moved around as a whole to keep the code sane
 
 void gameLogic::compareStart(char tempBoard[8][8], char debugBoard[8][8], bool whiteFirstFlag)
 {
@@ -153,3 +243,5 @@ void gameLogic::compareLand(char tempBoard[8][8], char debugBoard[8][8], bool wh
     }
   }
 }
+
+*/
