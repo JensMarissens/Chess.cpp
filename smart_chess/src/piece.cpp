@@ -1,6 +1,5 @@
-#include <Arduino.h>
-#include "piece.h"
-#include "globals.h"
+#include "../headers/piece.h"
+#include "../headers/globals.h"
 
 piece::piece(){
 }

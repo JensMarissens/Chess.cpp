@@ -1,8 +1,4 @@
-#include <Arduino.h>
-#include "gameState.h"
-#include "gameLogic.h"
-
-#include "globals.h"
+#include "headers/globals.h"
 
 gameState gs;
 gameLogic glo;

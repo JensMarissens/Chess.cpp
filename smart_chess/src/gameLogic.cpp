@@ -1,6 +1,6 @@
 #include <Arduino.h>
-#include "gameLogic.h"
-#include "globals.h"
+#include "../headers/gameLogic.h"
+#include "../headers/globals.h"
 
 gameLogic::gameLogic() {}
 

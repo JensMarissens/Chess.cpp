@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "globals.h"
+#include "../headers/globals.h"
 
 board chessboard;
 PGN pgn;
