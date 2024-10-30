@@ -6,18 +6,6 @@ board::board()
     initDebugBoard();
 }
 
-void board::initBoard()
-{
-    Serial.println("Initializing PGN Array");
-    for (int i = 0; i < 8; i++)
-    {
-        for (int j = 0; j < 8; j++)
-        {
-            pieceType[i][j] = startCondition[i][j];
-        }
-    }
-}
-
 void board::initDebugBoard()
 {
     Serial.println("Initializing Debug Array");
@@ -80,20 +68,6 @@ void board::printDebugBoard() //   Create debug class and put all debug function
         for (int col = 0; col < 8; col++)
         {
             Serial.print(char(debugBoard[row][col]));
-            Serial.print("\t");
-        }
-        Serial.println();
-    }
-    Serial.println("----------------------------------------------------------");
-}
-
-void board::printBoard()
-{
-    for (int i = 0; i < 8; i++)
-    {
-        for (int j = 0; j < 8; j++)
-        {
-            Serial.print(pieceType[i][j]);
             Serial.print("\t");
         }
         Serial.println();

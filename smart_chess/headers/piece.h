@@ -10,8 +10,6 @@ public:
     char type;
     int coordinates[4] = {9, 9, 9, 9};
 
-    int validMove[2];
-
     virtual bool validateMove(char color, char type, int coordinates[4]);
     void printPieceTest();
 };

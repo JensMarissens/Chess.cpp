@@ -12,7 +12,6 @@ gameState::gameState() {}
 void gameState::startGame()
 {
 
-    chessboard.initBoard();
     chessboard.initDebugBoard();
 
     while (true)
