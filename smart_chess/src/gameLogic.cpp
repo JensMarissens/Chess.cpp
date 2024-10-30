@@ -103,12 +103,6 @@ void gameRound() // does nothing so far
   }
 }
 
-bool gameLogic::whatMovementType()
-{
-  
-  
-}
-
 bool gameLogic::wasItRook()
 {
   return rook.validateMove('I', 'R', coordArray);

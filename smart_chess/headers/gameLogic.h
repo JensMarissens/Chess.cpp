@@ -15,7 +15,6 @@ public:
 
     bool wasItRook();
     bool wasItBishop();
-    bool whatMovementType();
 
 
     bool didPieceMove();
