@@ -1,3 +1,4 @@
+#include "Arduino.h"
 #include "headers/globals.h"
 
 gameState gs;
@@ -43,7 +44,12 @@ void loop() {
     } else {
       Serial.println("Black");
     }
-
     glo.storeMove(test && wasItWhite);
+
+    bool rook = glo.wasItRook();
+    bool bishop = glo.wasItBishop();
+
+    Serial.println(rook ? "Rook" : "No Rook");
+    Serial.println(bishop ? "Bishop" : "No Bishop");
   }
 }

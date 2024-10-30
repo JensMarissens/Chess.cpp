@@ -7,13 +7,15 @@ gameLogic::gameLogic() {}
 // placeholder vars
 char color = 'X';
 char type = 'N';
-int coordArray[4] = {9,9,9,9};
+int coordArray[4];
 int turn = 1;
+
+Rook rook;
+Bishop bishop;
 
 bool gameLogic::didPieceMove()
 {
   int moveCount = 0;
-
 
   // Read
   chessboard.readBoard();
@@ -34,23 +36,26 @@ bool gameLogic::didPieceMove()
   chessboard.readBoard();
   chessboard.printDebugBoard();
 
-  for (size_t i = 0; i < 8; i++)
+  int x = 0;
+
+  for (int i = 0; i < 8; i++)
   {
-    for (size_t j = 0; j < 8; j++)
+    for (int j = 0; j < 8; j++)
     {
       if (chessboard.debugBoard[i][j] != tempBoard[i][j])
       {
-        //coordArray[]
-        color = chessboard.debugBoard[i][j]; //It's always assigning the last read square. So doesn't work.
+        coordArray[x] = i + 1;
+        coordArray[x + 1] = 8 - j;
+
+        Serial.print(coordArray[x]);
+        Serial.println(coordArray[x + 1]);
+
+        color = chessboard.debugBoard[i][j]; // It's always assigning the last read square. So doesn't work.
         moveCount++;
+        x += 2;
       }
     }
   }
-
-  // Pass params to Piece
-  chess_piece.updatePiece(color, type, coordArray);
-
-  return moveCount == 2;
 }
 
 bool gameLogic::wasItWhite()
@@ -70,16 +75,16 @@ void gameLogic::storeMove(bool isValid)
   turn++;
 }
 
-void gameRound() //does nothing so far
+void gameRound() // does nothing so far
 {
   gameLogic logic; // Create an instance of gameLogic
   bool whitePlayed = false;
 
-  bool moved = logic.didPieceMove(); // Call member functions on the instance
+  bool moved = logic.didPieceMove();
   bool isWhite = logic.wasItWhite();
   bool isValid;
 
-  if (moved && isWhite) //does nothing so far
+  if (moved && isWhite) // does nothing so far
   {
     isValid = logic.wasItValid(); // Check if the move is valid
 
@@ -89,13 +94,29 @@ void gameRound() //does nothing so far
     turn++;
   }
 
-  if (moved && whitePlayed) //does nothing so far
+  if (moved && whitePlayed) // does nothing so far
   {
     logic.storeMove(isValid); // Store the move again
 
     whitePlayed = false;
     turn++;
   }
+}
+
+bool gameLogic::whatMovementType()
+{
+  
+  
+}
+
+bool gameLogic::wasItRook()
+{
+  return rook.validateMove('I', 'R', coordArray);
+}
+
+bool gameLogic::wasItBishop()
+{
+  return bishop.validateMove('I', 'R', coordArray);
 }
 
 /*
@@ -114,7 +135,7 @@ move gameLogic::validMove(char tempBoard[8][8], char debugBoard[8][8], bool whit
     _move.isValid = true;
     _move.PGNnotation = PGNtestString;
 
-    chess_piece.printPieceTest();
+    chess_piece.printrook();
   }
   else
   {

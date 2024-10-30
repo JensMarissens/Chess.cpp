@@ -13,13 +13,17 @@ class gameLogic
 public:
     gameLogic();
 
+    bool wasItRook();
+    bool wasItBishop();
+    bool whatMovementType();
+
+
     bool didPieceMove();
     bool wasItWhite();
     bool wasItValid();
     void storeMove(bool z);
 
     char tempBoard[8][8];
-
 };
 
 #endif

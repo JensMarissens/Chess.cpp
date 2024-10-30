@@ -1,5 +1,5 @@
-#include "../headers/globals.h"
 #include <Arduino.h>
+#include "../headers/globals.h"
 
 PGN::PGN() {}
 

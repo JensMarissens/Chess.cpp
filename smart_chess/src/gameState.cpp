@@ -1,3 +1,5 @@
+#include <Arduino.h>
+
 #include "../headers/gameState.h"
 
 #include "../headers/globals.h"
