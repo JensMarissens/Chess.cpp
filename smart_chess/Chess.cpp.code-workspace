@@ -9,7 +9,12 @@
 			"*.embeddedhtml": "html",
 			"*.tcc": "cpp",
 			"cmath": "cpp",
-			"cstdlib": "cpp"
+			"cstdlib": "cpp",
+			"array": "cpp",
+			"functional": "cpp",
+			"tuple": "cpp",
+			"type_traits": "cpp",
+			"utility": "cpp"
 		}
 	}
 }

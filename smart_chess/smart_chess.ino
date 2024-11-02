@@ -4,10 +4,11 @@
 gameState gs;
 gameLogic glo;
 
-bool startGame = true;  // false;
+bool startGame = true; // false;
 int EN = 3;
 
-void setup() {
+void setup()
+{
   Serial.begin(19200);
 
   pinMode(7, OUTPUT);
@@ -18,38 +19,49 @@ void setup() {
   pinMode(EN, OUTPUT);
 
   digitalWrite(EN, LOW);
+
+  chessboard.initBoard();
 }
 
-void loop() {
+void loop()
+{
 
-  if (startGame) {
-    //Temp Serial Monitor clear
-    for (size_t i = 0; i < 5; i++) {
+  if (startGame)
+  {
+    // Temp Serial Monitor clear
+    for (size_t i = 0; i < 5; i++)
+    {
       Serial.println();
     }
 
-    //gs.startGame();
+    chessboard.printBoard();
+    delay(2000);
 
-    bool test = glo.didPieceMove(); //If I make all these functions piece datatype I could just update the parameters?
-    bool wasItWhite = glo.wasItWhite();
+    /*
 
-    if (test) {
-      Serial.println("Moved");
-    } else {
-      Serial.println("Hasn't moved");
-    }
 
-    if (wasItWhite) {
-      Serial.println("White");
-    } else {
-      Serial.println("Black");
-    }
-    glo.storeMove(test && wasItWhite);
+        //gs.startGame();
 
-    bool rook = glo.wasItRook();
-    bool bishop = glo.wasItBishop();
+        bool test = glo.didPieceMove();
+        bool wasItWhite = glo.wasItWhite();
 
-    Serial.println(rook ? "Rook" : "No Rook");
-    Serial.println(bishop ? "Bishop" : "No Bishop");
+        if (test) {
+          Serial.println("Moved");
+        } else {
+          Serial.println("Hasn't moved");
+        }
+
+        if (wasItWhite) {
+          Serial.println("White");
+        } else {
+          Serial.println("Black");
+        }
+        glo.storeMove(test && wasItWhite);
+
+        bool knight = glo.wasItKnight();
+        bool queen = glo.wasItQueen();
+
+        Serial.println(knight ? "knight" : "knight");
+        Serial.println(queen ? "queen" : "queen");*/
   }
 }

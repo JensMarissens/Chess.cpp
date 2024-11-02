@@ -7,20 +7,27 @@ public:
     piece();
 
     char color;
-    char type; //default on startCondition[8][8], then store to gameBoard
+    char type; // default on startCondition[8][8], then store to gameBoard
     int coordinates[4] = {9, 9, 9, 9};
 
     virtual bool validateMove(char color, char type, int coordinates[4]);
     void printPieceTest();
+
+    /*DELETE*/
+    char getColor();
+    char getType();
+
+    virtual void print(char color, char type);
+    /*DELETE*/
 };
 
 class Rook : public piece
 {
 public:
-    Rook();
+    Rook(char color, char type, int coordinates[4]);
     bool validateMove(char color, char type, int coordinates[4]) override;
 };
-
+/*
 class Bishop : public piece
 {
 public:
@@ -40,20 +47,20 @@ class Pawn : public piece
 public:
     Pawn();
     bool validateMove(char color, char type, int coordinates[4]) override;
-}
+};
 
 class King : public piece
 {
 public:
     King();
     bool validateMove(char color, char type, int coordinates[4]) override;
-}
+};
 
 class Queen : public piece
 {
 public:
     Queen();
     bool validateMove(char color, char type, int coordinates[4]) override;
-}
-
+};
+*/
 #endif

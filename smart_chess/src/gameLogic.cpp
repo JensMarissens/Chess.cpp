@@ -10,14 +10,18 @@ char type = 'N';
 int coordArray[4];
 int turn = 1;
 
-Rook rook;
-Bishop bishop;
+//Knight knight;
+//Queen queen;
+//Rook rook;
 
 bool gameLogic::didPieceMove()
 {
   int moveCount = 0;
 
   // Read
+  chessboard.initBoard();
+
+
   chessboard.readBoard();
   chessboard.printDebugBoard();
 
@@ -86,12 +90,12 @@ void gameRound() // does nothing so far
 
 }
 
-bool gameLogic::wasItRook()
+bool gameLogic::wasItKnight()
 {
-  return rook.validateMove('I', 'R', coordArray);
+  return false; //knight.validateMove('I', 'K', coordArray);
 }
 
-bool gameLogic::wasItBishop()
+bool gameLogic::wasItQueen()
 {
-  return bishop.validateMove('I', 'R', coordArray);
+  return false; //queen.validateMove('I', 'Q', coordArray);
 }
