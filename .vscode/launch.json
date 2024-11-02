@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": ".",
-      "program": "build/Debug/outDebug",
+      "cwd": "c:/Users/The Hub/Desktop/smartChess/smart_chess/Chess.cpp/smart_chess",
+      "program": "c:/Users/The Hub/Desktop/smartChess/smart_chess/Chess.cpp/smart_chess/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
