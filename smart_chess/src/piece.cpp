@@ -4,38 +4,83 @@
 
 piece::piece() {}
 
-Rook::Rook(char color, char type, int coordinates[4]) {}
+Rook::Rook(char c, char t, int coordinates[4]) {
+    color = c;
+    type = t;
+    for (int i = 0; i < 4; i++) {
+        this->coordinates[i] = coordinates[i]; // Initialize coordinates
+    }
+}
 
-//Bishop::Bishop() {}
+Bishop::Bishop(char c, char t, int coordinates[4]) {
+    color = c;
+    type = t;
+    for (int i = 0; i < 4; i++) {
+        this->coordinates[i] = coordinates[i]; // Initialize coordinates
+    }
+}
 
-//Knight::Knight() {}
+Knight::Knight(char c, char t, int coordinates[4]) {
+    color = c;
+    type = t;
+    for (int i = 0; i < 4; i++) {
+        this->coordinates[i] = coordinates[i]; // Initialize coordinates
+    }
+}
 
-//Pawn::Pawn() {}
+Pawn::Pawn(char c, char t, int coordinates[4]) {
+    color = c;
+    type = t;
+    for (int i = 0; i < 4; i++) {
+        this->coordinates[i] = coordinates[i]; // Initialize coordinates
+    }
+}
 
-//King::King() {}
+King::King(char c, char t, int coordinates[4]) {
+    color = c;
+    type = t;
+    for (int i = 0; i < 4; i++) {
+        this->coordinates[i] = coordinates[i]; // Initialize coordinates
+    }
+}
 
-//Queen::Queen() {}
+Queen::Queen(char c, char t, int coordinates[4]) {
+    color = c;
+    type = t;
+    for (int i = 0; i < 4; i++) {
+        this->coordinates[i] = coordinates[i]; // Initialize coordinates
+    }
+}
 
-bool piece::validateMove(char color, char type, int coordinates[4])
+bool piece::validateMove(int coordinates[4])
 {
     // Here and in all subsequent implementations, coordinates contains [x1,y1,x2,y2]. Or old position, new position.
     return false;
 }
+
+
+char piece::getColor(){
+    return color;
+}
+
+char piece::getType(){
+    return type;
+}
  
-bool Rook::validateMove(char color, char type, int coordinates[4])
+bool Rook::validateMove(int coordinates[4])
 {
     // move in one axis only
     return (coordinates[3] == coordinates[1] && coordinates[2] != coordinates[0]) ||
            (coordinates[2] == coordinates[0] && coordinates[3] != coordinates[1]);
 }
-/*
-bool Bishop::validateMove(char color, char type, int coordinates[4])
+
+bool Bishop::validateMove(int coordinates[4])
 {
     // diagonal movements affect x & y similarly
     return (abs(coordinates[3] - coordinates[1]) == abs(coordinates[2] - coordinates[0]));
 }
 
-bool Knight::validateMove(char color, char type, int coordinates[4])
+bool Knight::validateMove(int coordinates[4])
 {
     //x or y moves 2, the other moves 1. Subtract tha absoluted and 1 remains
     // abs( abs(coord[0] - coord[2]) - abs(coord[1] - coord[3]) ) == 1
@@ -51,20 +96,20 @@ bool Knight::validateMove(char color, char type, int coordinates[4])
     return false;
 }
 
-bool Pawn::validateMove(char color, char type, int coordinates[4])
+bool Pawn::validateMove(int coordinates[4])
 {
     return (coordinates[2] == coordinates[0] && abs(coordinates[3] - coordinates[1]) == 1);
     // We'll need to add an exception for regular/en passant capture.
     // AND for first move, but that's just a check if(on starting position), allow +2.
 }
 
-bool King::validateMove(char color, char type, int coordinates[4])
+bool King::validateMove(int coordinates[4])
 {
     return (abs(coordinates[3] - coordinates[1]) == 1 && abs(coordinates[2] - coordinates[0]) <= 1) ||
            (abs(coordinates[2] - coordinates[0]) == 1 && abs(coordinates[3] - coordinates[1]) <= 1);
 }
 
-bool Queen::validateMove(char color, char type, int coordinates[4])
+bool Queen::validateMove(int coordinates[4])
 {
     if ((coordinates[3] == coordinates[1] && coordinates[2] != coordinates[0]) ||
         (coordinates[2] == coordinates[0] && coordinates[3] != coordinates[1]))
@@ -82,10 +127,12 @@ bool Queen::validateMove(char color, char type, int coordinates[4])
 
 /*--------------------------------------------------To be removed-----------------------------------------------------------------*/
 
+
+
+
 void piece::print(char color, char type) {
     Serial.print(String(color) + String(type) + "\t");
 }
-
 
 
 void piece::printPieceTest()

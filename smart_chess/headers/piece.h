@@ -10,14 +10,14 @@ public:
     char type; // default on startCondition[8][8], then store to gameBoard
     int coordinates[4] = {9, 9, 9, 9};
 
-    virtual bool validateMove(char color, char type, int coordinates[4]);
+    virtual bool validateMove(int coordinates[4]);
     void printPieceTest();
 
-    /*DELETE*/
     char getColor();
     char getType();
 
-    virtual void print(char color, char type);
+    /*DELETE*/
+    void print(char color, char type);
     /*DELETE*/
 };
 
@@ -25,42 +25,42 @@ class Rook : public piece
 {
 public:
     Rook(char color, char type, int coordinates[4]);
-    bool validateMove(char color, char type, int coordinates[4]) override;
+    bool validateMove(int coordinates[4]) override;
 };
-/*
+
 class Bishop : public piece
 {
 public:
-    Bishop();
-    bool validateMove(char color, char type, int coordinates[4]) override;
+    Bishop(char color, char type, int coordinates[4]);
+    bool validateMove(int coordinates[4]) override;
 };
 
 class Knight : public piece
 {
 public:
-    Knight();
-    bool validateMove(char color, char type, int coordinates[4]) override;
+    Knight(char color, char type, int coordinates[4]);
+    bool validateMove(int coordinates[4]) override;
 };
 
 class Pawn : public piece
 {
 public:
-    Pawn();
-    bool validateMove(char color, char type, int coordinates[4]) override;
+    Pawn(char color, char type, int coordinates[4]);
+    bool validateMove(int coordinates[4]) override;
 };
 
 class King : public piece
 {
 public:
-    King();
-    bool validateMove(char color, char type, int coordinates[4]) override;
+    King(char color, char type, int coordinates[4]);
+    bool validateMove(int coordinates[4]) override;
 };
 
 class Queen : public piece
 {
 public:
-    Queen();
-    bool validateMove(char color, char type, int coordinates[4]) override;
+    Queen(char color, char type, int coordinates[4]);
+    bool validateMove(int coordinates[4]) override;
 };
-*/
+
 #endif

@@ -3,25 +3,21 @@
 
 piece *gameBoard[8][8];
 
-int coordinates[4] = {0,0,0,0};
+int coordinates[4] = {0, 0, 0, 0};
 
 // nothing has to access this, this should be here
 piece *backRowWhite[8] = {
-    //new Rook(), new Knight(), new Bishop(), new Queen(), new King(), new Bishop(), new Knight(), new Rook()   //  DELETE PIECES FROM MEMOPRY WHEN CAPTURED
-};
+    //  DELETE PIECES FROM MEMOPRY WHEN CAPTURED
+    new Rook('W', 'R', coordinates[4]), new Knight('W', 'K', coordinates[4]), new Bishop('W', 'B', coordinates[4]), new Queen('W', 'Q', coordinates[4]), new King('W', 'K', coordinates[4]), new Bishop('W', 'B', coordinates[4]), new Knight('W', 'K', coordinates[4]), new Rook('W', 'R', coordinates[4])};
 
 piece *pawnRowWhite[8] = {
-    //new Pawn(), new Pawn(), new Pawn(), new Pawn(), new Pawn(), new Pawn(), new Pawn(), new Pawn()};
-    new Rook( 'W',  'R',  coordinates[4]), new Rook( 'W',  'R',  coordinates[4]), new Rook( 'W',  'R',  coordinates[4]), new Rook( 'W',  'R',  coordinates[4]), new Rook( 'W',  'R',  coordinates[4]), new Rook( 'W',  'R',  coordinates[4]), new Rook( 'W',  'R',  coordinates[4]), new Rook( 'W',  'R',  coordinates[4])
-    };
-
-piece *backRowBlack[8] = {
-    //new Rook(), new Knight(), new Bishop(), new Queen(), new King(), new Bishop(), new Knight(), new Rook()
-    };
+    new Pawn('W', 'p', coordinates[4]), new Pawn('W', 'p', coordinates[4]), new Pawn('W', 'p', coordinates[4]), new Pawn('W', 'p', coordinates[4]), new Pawn('W', 'p', coordinates[4]), new Pawn('W', 'p', coordinates[4]), new Pawn('W', 'p', coordinates[4]), new Pawn('W', 'p', coordinates[4])};
 
 piece *pawnRowBlack[8] = {
-    //new Rook(), new Knight(), new Bishop(), new Queen(), new King(), new Bishop(), new Knight(), new Rook()
-    };
+    new Pawn('B', 'p', coordinates[4]), new Pawn('B', 'p', coordinates[4]), new Pawn('B', 'p', coordinates[4]), new Pawn('B', 'p', coordinates[4]), new Pawn('B', 'p', coordinates[4]), new Pawn('B', 'p', coordinates[4]), new Pawn('B', 'p', coordinates[4]), new Pawn('B', 'p', coordinates[4])};
+
+piece *backRowBlack[8] = {
+    new Rook('B', 'R', coordinates[4]), new Knight('B', 'K', coordinates[4]), new Bishop('B', 'B', coordinates[4]), new Queen('B', 'Q', coordinates[4]), new King('B', 'K', coordinates[4]), new Bishop('B', 'B', coordinates[4]), new Knight('B', 'K', coordinates[4]), new Rook('B', 'R', coordinates[4])};
 
 board::board()
 {
@@ -53,7 +49,7 @@ void board::initBoard()
 
         for (int j = 2; j < 6; j++)
         {
-            gameBoard[i][j] = nullptr; // Empty squares
+            gameBoard[j][i] = nullptr; // Empty squares
         }
     }
 }
@@ -114,16 +110,22 @@ void board::printDebugBoard() //   Create debug class and put all debug function
     Serial.println("----------------------------------------------------------");
 }
 
-
 void board::printBoard()
 {
     for (int i = 0; i < 8; i++)
     {
         for (int j = 0; j < 8; j++)
         {
-            if (gameBoard[i][j] != nullptr) {
-                gameBoard[i][j]->print('W', 'R'); // Call the print method on the piece
-            } else {
+            if (gameBoard[i][j] != nullptr)
+            {
+
+                // gameBoard[i][j]->print(gameBoard[i][j]->color, gameBoard[i][j]->type); // Call the print method on the piece
+                Serial.print((char)gameBoard[i][j]->getColor());
+                Serial.print((char)gameBoard[i][j]->getType());
+                Serial.print("\t");
+            }
+            else
+            {
                 Serial.print("Empty\t");
             }
         }
