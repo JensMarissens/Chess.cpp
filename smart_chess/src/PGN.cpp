@@ -1,16 +1,16 @@
 #include <Arduino.h>
-#include "PGN.h"
-#include "globals.h"
+#include "../headers/globals.h"
 
 PGN::PGN() {}
 
 void PGN::initPGNArray()
 {
+    
     for (int i = 0; i < 8; i++)
     {
         for (int j = 0; j < 8; j++)
         {
-            // chessboard.pieceType[i][j] = chessboard.startCondition[i][j];
+            //chessboard.gameboard[i][j]
             //  measurements[i][j] = 0;
             // Serial.println(String(chessboard.pieceType[i][j]) + "\t");
         }

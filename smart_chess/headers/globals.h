@@ -5,9 +5,11 @@
 #include "PGN.h"
 #include "piece.h"
 
+#include "gameState.h"
+#include "gameLogic.h"
+
 extern board chessboard;
 extern PGN pgn;
 extern piece chess_piece;
-extern chessPiece chesspiece;
 
 #endif
