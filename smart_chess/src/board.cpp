@@ -3,7 +3,7 @@
 
 piece *gameBoard[8][8];
 
-int coordinates[4] = {9,9,9,9}; //This is here and in piece.h. Shouldn't be here but it gives an error?
+int coordinates[4] = {9, 9, 9, 9}; // This is here and in piece.h. Shouldn't be here but it gives an error?
 
 // nothing has to access this, this should be here
 piece *backRowWhite[8] = {
@@ -27,12 +27,12 @@ board::board()
 
 void board::initDebugBoard()
 {
-    //Serial.println("Initializing Debug Array");
+    // Serial.println("Initializing Debug Array");
     for (int i = 0; i < 8; i++)
     {
         for (int j = 0; j < 8; j++)
         {
-            debugBoard[i][j] = 0;
+            debugBoard[i][j] = '0';
         }
     }
 }
@@ -127,32 +127,35 @@ void board::printBoard()
             {
                 Serial.print((char)gameBoard[i][j]->getColor());
                 Serial.print((char)gameBoard[i][j]->getType());
-                //Serial.print(gameBoard[i][j]->getCoordinates());
+                // Serial.print(gameBoard[i][j]->getCoordinates());
                 Serial.print("\t");
             }
             else
             {
-                Serial.print("TILE\t");
+                Serial.print(char(254));
+                Serial.print("\t");
             }
         }
         Serial.println("\n"); // Newline for the next row
     }
 }
 
-
-bool board::startConditionValidFlag(){
+bool board::startConditionValidFlag()
+{
     int passFlag = 0;
+    
 
     for (size_t i = 0; i < 8; i++)
     {
         for (size_t j = 0; j < 8; j++)
         {
-            if(gameBoard[i][j]->getColor() == debugBoard[i][j]){
+            if (gameBoard[i][j]->getColor() == debugBoard[i][j])
+            {
                 passFlag++;
             }
-            return false;
         }
     }
-    
+
+    Serial.println("Passflag: " + String(passFlag));
     return passFlag == 63;
 }
