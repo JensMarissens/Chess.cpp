@@ -4,69 +4,82 @@
 
 piece::piece() {}
 
-Rook::Rook(char c, char t, int coordinates[4]) {
-    color = c;
-    type = t;
-    for (int i = 0; i < 4; i++) {
-        this->coordinates[i] = coordinates[i]; // Initialize coordinates
-    }
-}
-
-Bishop::Bishop(char c, char t, int coordinates[4]) {
-    color = c;
-    type = t;
-    for (int i = 0; i < 4; i++) {
-        this->coordinates[i] = coordinates[i]; // Initialize coordinates
-    }
-}
-
-Knight::Knight(char c, char t, int coordinates[4]) {
-    color = c;
-    type = t;
-    for (int i = 0; i < 4; i++) {
-        this->coordinates[i] = coordinates[i]; // Initialize coordinates
-    }
-}
-
-Pawn::Pawn(char c, char t, int coordinates[4]) {
-    color = c;
-    type = t;
-    for (int i = 0; i < 4; i++) {
-        this->coordinates[i] = coordinates[i]; // Initialize coordinates
-    }
-}
-
-King::King(char c, char t, int coordinates[4]) {
-    color = c;
-    type = t;
-    for (int i = 0; i < 4; i++) {
-        this->coordinates[i] = coordinates[i]; // Initialize coordinates
-    }
-}
-
-Queen::Queen(char c, char t, int coordinates[4]) {
-    color = c;
-    type = t;
-    for (int i = 0; i < 4; i++) {
-        this->coordinates[i] = coordinates[i]; // Initialize coordinates
-    }
-}
-
 bool piece::validateMove(int coordinates[4])
 {
     // Here and in all subsequent implementations, coordinates contains [x1,y1,x2,y2]. Or old position, new position.
     return false;
 }
 
-
-char piece::getColor(){
+char piece::getColor()
+{
     return color;
 }
 
-char piece::getType(){
+char piece::getType()
+{
     return type;
 }
- 
+
+Rook::Rook(char c, char t, int coordinates[4])
+{
+    color = c;
+    type = t;
+    for (int i = 0; i < 4; i++)
+    {
+        this->coordinates[i] = coordinates[i]; // Initialize coordinates
+    }
+}
+
+Bishop::Bishop(char c, char t, int coordinates[4])
+{
+    color = c;
+    type = t;
+    for (int i = 0; i < 4; i++)
+    {
+        this->coordinates[i] = coordinates[i]; // Initialize coordinates
+    }
+}
+
+Knight::Knight(char c, char t, int coordinates[4])
+{
+    color = c;
+    type = t;
+    for (int i = 0; i < 4; i++)
+    {
+        this->coordinates[i] = coordinates[i]; // Initialize coordinates
+    }
+}
+
+Pawn::Pawn(char c, char t, int coordinates[4])
+{
+    color = c;
+    type = t;
+    for (int i = 0; i < 4; i++)
+    {
+        this->coordinates[i] = coordinates[i]; // Initialize coordinates
+    }
+}
+
+King::King(char c, char t, int coordinates[4])
+{
+    color = c;
+    type = t;
+    for (int i = 0; i < 4; i++)
+    {
+        this->coordinates[i] = coordinates[i]; // Initialize coordinates
+    }
+}
+
+Queen::Queen(char c, char t, int coordinates[4])
+{
+    color = c;
+    type = t;
+    for (int i = 0; i < 4; i++)
+    {
+        this->coordinates[i] = coordinates[i]; // Initialize coordinates
+    }
+}
+
 bool Rook::validateMove(int coordinates[4])
 {
     // move in one axis only
@@ -82,8 +95,8 @@ bool Bishop::validateMove(int coordinates[4])
 
 bool Knight::validateMove(int coordinates[4])
 {
-    //x or y moves 2, the other moves 1. Subtract tha absoluted and 1 remains
-    // abs( abs(coord[0] - coord[2]) - abs(coord[1] - coord[3]) ) == 1
+    // x or y moves 2, the other moves 1. Subtract tha absoluted and 1 remains
+    //  abs( abs(coord[0] - coord[2]) - abs(coord[1] - coord[3]) ) == 1
 
     if (abs(coordinates[3] - coordinates[1]) == 2 && abs(coordinates[2] - coordinates[0]) == 1)
     {
@@ -127,13 +140,10 @@ bool Queen::validateMove(int coordinates[4])
 
 /*--------------------------------------------------To be removed-----------------------------------------------------------------*/
 
-
-
-
-void piece::print(char color, char type) {
+void piece::print(char color, char type)
+{
     Serial.print(String(color) + String(type) + "\t");
 }
-
 
 void piece::printPieceTest()
 {

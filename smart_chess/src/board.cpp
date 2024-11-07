@@ -3,7 +3,7 @@
 
 piece *gameBoard[8][8];
 
-int coordinates[4] = {0, 0, 0, 0};
+int coordinates[4]; //This is here and in piece.h. Shouldn't be here but it gives an error?
 
 // nothing has to access this, this should be here
 piece *backRowWhite[8] = {
@@ -126,9 +126,9 @@ void board::printBoard()
             }
             else
             {
-                Serial.print("Empty\t");
+                Serial.print("TILE\t");
             }
         }
-        Serial.println(); // Newline for the next row
+        Serial.println("\n"); // Newline for the next row
     }
 }
