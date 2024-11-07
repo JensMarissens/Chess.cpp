@@ -147,7 +147,7 @@ bool board::startConditionValidFlag(){
     {
         for (size_t j = 0; j < 8; j++)
         {
-            if(gameBoard[0][i]->getColor() == debugBoard[i][j]){
+            if(gameBoard[i][j]->getColor() == debugBoard[i][j]){
                 passFlag++;
             }
             return false;
