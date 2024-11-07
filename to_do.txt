@@ -1,0 +1,11 @@
+We have our piece array for logic.
+Now we need to use a read array for hardware inputs.
+
+At start check if the correct tiles read white or black and start game.
+Do readBoard like we've been doing.
+
+If a piece moves we send the x1,y1,x2,y2 values to the logic array using coordinates[4]
+From here we can validate the move and update the logic array.
+
+We do NOT need to update the read array, cause the whole point is that it just reads.
+The piece array stores the game state, somehow.
