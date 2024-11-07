@@ -15,13 +15,15 @@ public:
 
     registerBoardState();   //update memory to the current state of Piece* array. 
                             //We need this before we can implement the capture mechanic. 
-    bool wasItKnight();     //And after check & checkmate
-    bool wasItQueen();
+                            //And after check & checkmate
 
+
+    bool startConditionValidFlag();
 
     bool didPieceMove();
     bool wasItWhite();
-    bool wasItValid();
+
+    bool wasMoveValid();
     void storeMove(bool z);
 
     void takePiece();

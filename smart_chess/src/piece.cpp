@@ -20,6 +20,10 @@ char piece::getType()
     return type;
 }
 
+int* piece::getCoordinates() {
+    return coordinates;
+}
+
 Rook::Rook(char c, char t, int coordinates[4])
 {
     color = c;
@@ -140,9 +144,9 @@ bool Queen::validateMove(int coordinates[4])
 
 /*--------------------------------------------------To be removed-----------------------------------------------------------------*/
 
-void piece::print(char color, char type)
+void piece::print(char color, char type, int coordinates[4]) //Currently does nothing
 {
-    Serial.print(String(color) + String(type) + "\t");
+    Serial.print(String(color) + String(type) + "(" + coordinates[0] + coordinates[1] + ")\t");
 }
 
 void piece::printPieceTest()

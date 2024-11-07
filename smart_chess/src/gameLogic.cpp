@@ -10,9 +10,15 @@ char type = 'N';
 int coordArray[4];
 int turn = 1;
 
-//Knight knight;
-//Queen queen;
-//Rook rook;
+// Knight knight;
+// Queen queen;
+// Rook rook;
+
+bool gameLogic::startConditionValidFlag()
+{
+  //chessboard.getBoard();
+  return true;
+}
 
 bool gameLogic::didPieceMove()
 {
@@ -20,7 +26,6 @@ bool gameLogic::didPieceMove()
 
   // Read
   chessboard.initBoard();
-
 
   chessboard.readBoard();
   chessboard.printDebugBoard();
@@ -62,17 +67,6 @@ bool gameLogic::didPieceMove()
   }
 }
 
-bool gameLogic::wasItWhite()
-{
-  return color == 'I';
-}
-
-bool gameLogic::wasItValid()
-{
-  // Implement your logic here
-  return true; // Placeholder value
-}
-
 void gameLogic::storeMove(bool isValid)
 {
   pgn.writePGNArray(String(turn) + ". " + String(type) + "r9");
@@ -86,16 +80,4 @@ void gameRound() // does nothing so far
 
   bool moved = logic.didPieceMove();
   bool isWhite = logic.wasItWhite();
-
-
-}
-
-bool gameLogic::wasItKnight()
-{
-  return false; //knight.validateMove('I', 'K', coordArray);
-}
-
-bool gameLogic::wasItQueen()
-{
-  return false; //queen.validateMove('I', 'Q', coordArray);
 }

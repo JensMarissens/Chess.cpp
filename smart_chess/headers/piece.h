@@ -3,12 +3,14 @@
 
 class piece
 {
+
+protected:      // Protected members are accessible within the same class and in any derived (child) class.
+    char color;
+    char type;  // default on startCondition[8][8], then store to gameBoard
+    int coordinates[4] = {9, 9, 9, 9};
+
 public:
     piece();
-
-    char color;
-    char type; // default on startCondition[8][8], then store to gameBoard
-    int coordinates[4] = {9, 9, 9, 9};
 
     virtual bool validateMove(int coordinates[4]);
     void printPieceTest();
@@ -16,8 +18,11 @@ public:
     char getColor();
     char getType();
 
+    int *getCoordinates();
+    // int getCoordinates();
+
     /*DELETE*/
-    void print(char color, char type);
+    void print(char color, char type, int coordinates[4]);
     /*DELETE*/
 };
 

@@ -24,7 +24,12 @@ public:
   void readBoard();
   void initBoard();
   char writeBoard(int reading);
-  
+
+  //piece** getBoard();
+  void getBoard();
+
+  bool startConditionValidFlag();
+
 
   void printBoard();
 

@@ -19,8 +19,6 @@ void setup()
   pinMode(EN, OUTPUT);
 
   digitalWrite(EN, LOW);
-
-  chessboard.initBoard();
 }
 
 void loop()
@@ -34,14 +32,10 @@ void loop()
       Serial.println();
     }
 
-    chessboard.printBoard();
+    gs.startGame();
     delay(2000);
 
     /*
-
-
-        //gs.startGame();
-
         bool test = glo.didPieceMove();
         bool wasItWhite = glo.wasItWhite();
 
