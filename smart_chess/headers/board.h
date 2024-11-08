@@ -25,10 +25,7 @@ public:
   void initBoard();
   char writeBoard(int reading);
 
-  //piece** getBoard();
-  void getBoard();
-
-  bool startConditionValidFlag();
+  piece* (*getBoard())[8][8];
 
 
   void printBoard();

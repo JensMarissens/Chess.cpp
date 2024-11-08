@@ -15,23 +15,19 @@ void gameState::startGame()
     chessboard.initBoard();
 
     // startFlag should come from a both boards function that checks. class gameLogic
-    chessboard.printBoard();
-
-    chessboard.readBoard();
-    chessboard.printDebugBoard();
-
-    if (!chessboard.startConditionValidFlag()) // if board reading and assigned colors (tile values) DONT match, exit function, else go on. set startflag to false. (Startflag will replace param in ino file.)
+    if (!gl.startConditionValidFlag()) // if board reading and assigned colors (tile values) DONT match, exit function, else go on. set startflag to false. (Startflag will replace param in ino file.)
     {
-        // collect error message? Do we want a gui or not?? Maybe a log at least? For debugging.
-        return;
+        return; // collect error message? Do we want a gui or not?? Maybe a log at least? For debugging.
     }
-    else if (chessboard.startConditionValidFlag())
-    {
-        Serial.println();
-    }
+    Serial.println("Start condition valid.");
 
     while (true)
     {
-        /* code */
+        Serial.println("Game running");
+        gl.gameRound();
+        chessboard.printBoard();
+        chessboard.printDebugBoard();
+
+        delay(1000);
     }
 }

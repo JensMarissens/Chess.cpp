@@ -9,6 +9,7 @@ char color = 'X';
 char type = 'N';
 int coordArray[4];
 int turn = 1;
+piece* (*logicBoard)[8][8];
 
 // Knight knight;
 // Queen queen;
@@ -16,19 +17,37 @@ int turn = 1;
 
 bool gameLogic::startConditionValidFlag()
 {
-  //chessboard.getBoard();
-  return true;
+  int passFlag = 0;
+  chessboard.readBoard();
+
+  piece* (*boardPointer)[8][8] = chessboard.getBoard();
+
+
+  for (size_t i = 0; i < 8; i++)
+  {
+    for (size_t j = 0; j < 8; j++)
+    {
+      piece* currentPiece = (*boardPointer)[i][j];
+      if (currentPiece->getColor() == chessboard.debugBoard[i][j] ||
+          currentPiece == nullptr && chessboard.debugBoard[i][j] == 'X')
+      {
+        passFlag++;
+      }
+    }
+  }
+
+  Serial.println("Passflag: " + String(passFlag));
+  // return passFlag == 64;
+  return passFlag == 32;
+
+  //return chessboard.startConditionValidFlag();
 }
 
 bool gameLogic::didPieceMove()
 {
-  int moveCount = 0;
 
   // Read
-  chessboard.initBoard();
-
   chessboard.readBoard();
-  chessboard.printDebugBoard();
 
   // Copy
   for (size_t i = 0; i < 8; i++)
@@ -40,10 +59,9 @@ bool gameLogic::didPieceMove()
   }
 
   // Reread
-  Serial.println("Reading in 3s:");
+  Serial.println("Reading again in 3s:");
   delay(3000);
   chessboard.readBoard();
-  chessboard.printDebugBoard();
 
   int x = 0;
 
@@ -56,15 +74,18 @@ bool gameLogic::didPieceMove()
         coordArray[x] = i + 1;
         coordArray[x + 1] = 8 - j;
 
-        Serial.print(coordArray[x]);
-        Serial.println(coordArray[x + 1]);
-
-        color = chessboard.debugBoard[i][j]; // It's always assigning the last read square. So doesn't work.
-        moveCount++;
+        Serial.print(String(coordArray[x]) + String(coordArray[x + 1]) + " ");
         x += 2;
+
+        // color
       }
     }
   }
+  return x == 4;
+}
+
+bool wasItWHite()
+{
 }
 
 void gameLogic::storeMove(bool isValid)
@@ -73,11 +94,15 @@ void gameLogic::storeMove(bool isValid)
   turn++;
 }
 
-void gameRound() // does nothing so far
+void gameLogic::gameRound() // does nothing so far
 {
-  gameLogic logic; // Create an instance of gameLogic
+  bool moved;
+  bool wasWhite;
+
   bool whitePlayed = false;
 
-  bool moved = logic.didPieceMove();
-  bool isWhite = logic.wasItWhite();
+  moved = didPieceMove();
+
+  Serial.println(moved ? "Moved" : "Didn't move");
+  // wasWhite = wasItWhite();
 }

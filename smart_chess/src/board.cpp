@@ -32,7 +32,7 @@ void board::initDebugBoard()
     {
         for (int j = 0; j < 8; j++)
         {
-            debugBoard[i][j] = '0';
+            debugBoard[i][j] = 'X';
         }
     }
 }
@@ -53,13 +53,12 @@ void board::initBoard()
         }
     }
 }
-/*
-piece** board::getBoard() {
+
+piece* (*board::getBoard())[8][8]{
 
     Serial.println("getBoard exectued");
-    return gameBoard;  // Return the entire 2D array
-}*/
-void board::getBoard();
+    return &gameBoard;
+}
 
 void board::readBoard()
 {
@@ -76,8 +75,8 @@ void board::readBoard()
         digitalWrite(6, S2);
         digitalWrite(7, S3);
 
-        boardReadings[15 - i] = '1'; // writeBoard(0);
-        boardReadings[31 - i] = '2'; // writeBoard(1);
+        boardReadings[15 - i] = writeBoard(0);
+        boardReadings[31 - i] = writeBoard(1);
         boardReadings[47 - i] = writeBoard(2);
         boardReadings[63 - i] = writeBoard(3);
     }
@@ -114,7 +113,6 @@ void board::printDebugBoard() //   Create debug class and put all debug function
         }
         Serial.println();
     }
-    Serial.println("----------------------------------------------------------");
 }
 
 void board::printBoard()
@@ -138,24 +136,4 @@ void board::printBoard()
         }
         Serial.println("\n"); // Newline for the next row
     }
-}
-
-bool board::startConditionValidFlag()
-{
-    int passFlag = 0;
-    
-
-    for (size_t i = 0; i < 8; i++)
-    {
-        for (size_t j = 0; j < 8; j++)
-        {
-            if (gameBoard[i][j]->getColor() == debugBoard[i][j])
-            {
-                passFlag++;
-            }
-        }
-    }
-
-    Serial.println("Passflag: " + String(passFlag));
-    return passFlag == 63;
 }

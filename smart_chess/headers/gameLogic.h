@@ -26,6 +26,7 @@ public:
     bool wasMoveValid();
     void storeMove(bool z);
 
+    void gameRound();
     void takePiece();
 
     char tempBoard[8][8];
