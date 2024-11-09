@@ -45,8 +45,11 @@ bool gameLogic::didPieceMove()
   return moved;
 }
 
-bool wasItWHite()
+bool gameLogic::wasItWite()
 {
+  bool white = false;
+
+  return white;
 }
 
 void gameLogic::storeMove(bool isValid)
@@ -58,12 +61,13 @@ void gameLogic::storeMove(bool isValid)
 void gameLogic::gameRound() // does nothing so far
 {
   bool moved;
-  bool wasWhite;
+  bool white;
 
   bool whitePlayed = false;
 
   moved = didPieceMove();
+  white = wasItWhite();
 
-  Serial.println(moved ? "Moved" : "Didn't move");
-  // wasWhite = wasItWhite();
+  Serial.print(white ? "White " : "Black ");
+  Serial.println(moved ? "moved" : " didn't move");
 }
