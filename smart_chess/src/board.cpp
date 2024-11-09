@@ -21,18 +21,18 @@ piece *backRowBlack[8] = {
 
 board::board()
 {
-    initDebugBoard();
+    initsensorReadingsGrid();
     initBoard();
 }
 
-void board::initDebugBoard()
+void board::initsensorReadingsGrid()
 {
     // Serial.println("Initializing Debug Array");
     for (int i = 0; i < 8; i++)
     {
         for (int j = 0; j < 8; j++)
         {
-            debugBoard[i][j] = 'X';
+            sensorReadingsGrid[i][j] = 'X';
         }
     }
 }
@@ -75,10 +75,10 @@ void board::readBoard()
         digitalWrite(6, S2);
         digitalWrite(7, S3);
 
-        boardReadings[15 - i] = writeBoard(0);
-        boardReadings[31 - i] = writeBoard(1);
-        boardReadings[47 - i] = writeBoard(2);
-        boardReadings[63 - i] = writeBoard(3);
+        sensorReadingsRaw[15 - i] = writeBoard(0);
+        sensorReadingsRaw[31 - i] = writeBoard(1);
+        sensorReadingsRaw[47 - i] = writeBoard(2);
+        sensorReadingsRaw[63 - i] = writeBoard(3);
     }
 
     for (int col = 0; col < 4; col++) // Rewrite and add to above array? Or keep seperate for readability?
@@ -87,12 +87,41 @@ void board::readBoard()
         {
             int baseIndex = col * 4 + row;
 
-            debugBoard[3 - row][col] = boardReadings[baseIndex];
-            debugBoard[3 - row][col + 4] = boardReadings[baseIndex + 16];
-            debugBoard[7 - row][col] = boardReadings[baseIndex + 32];
-            debugBoard[7 - row][col + 4] = boardReadings[baseIndex + 48];
+            sensorReadingsGrid[3 - row][col] = sensorReadingsRaw[baseIndex];
+            sensorReadingsGrid[3 - row][col + 4] = sensorReadingsRaw[baseIndex + 16];
+            sensorReadingsGrid[7 - row][col] = sensorReadingsRaw[baseIndex + 32];
+            sensorReadingsGrid[7 - row][col + 4] = sensorReadingsRaw[baseIndex + 48];
         }
     }
+}
+
+bool board::storePrevReadingAndCompare(){
+    for (size_t i = 0; i < 8; i++)
+  {
+    for (size_t j = 0; j < 8; j++)
+    {
+      tempStorage[i][j] = sensorReadingsGrid[i][j]; // old sensorReadingsGridVal, contains the ORIGINAL POSITION.
+    }
+  }
+
+  // Reread
+  Serial.println("Reading again in 3s:");
+  delay(3000);
+  readBoard();
+
+  int x = 0;
+
+  for (int i = 0; i < 8; i++)
+  {
+    for (int j = 0; j < 8; j++)
+    {
+      if (sensorReadingsGrid[i][j] != tempStorage[i][j])
+      {
+        x++;
+      }
+    }
+  }
+  return x == 2;
 }
 
 char board::writeBoard(int pin)
@@ -101,14 +130,14 @@ char board::writeBoard(int pin)
                                                                    : 'X';
 }
 
-void board::printDebugBoard() //   Create debug class and put all debug functions in there for readability
+void board::printsensorReadingsGrid() //   Create debug class and put all debug functions in there for readability
 {
 
     for (int row = 0; row < 8; row++)
     {
         for (int col = 0; col < 8; col++)
         {
-            Serial.print((debugBoard[row][col]));
+            Serial.print((sensorReadingsGrid[row][col]));
             Serial.print("\t");
         }
         Serial.println();

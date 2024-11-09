@@ -28,8 +28,6 @@ public:
 
     void gameRound();
     void takePiece();
-
-    char tempBoard[8][8];
 };
 
 #endif
