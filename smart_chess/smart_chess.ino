@@ -2,7 +2,6 @@
 #include "headers/globals.h"
 
 gameState gs;
-gameLogic glo;
 
 bool startGame = true; // false;
 int EN = 3;

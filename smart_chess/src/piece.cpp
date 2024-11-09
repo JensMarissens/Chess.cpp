@@ -20,7 +20,7 @@ char piece::getType()
     return type;
 }
 
-int* piece::getCoordinates() {
+int* piece::getCoordinates() { //I need to pull the appropriate value somehow to assign it
     return coordinates;
 }
 

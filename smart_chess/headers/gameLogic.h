@@ -27,8 +27,6 @@ public:
     void storeMove(bool z);
 
     void takePiece();
-
-    char tempBoard[8][8];
 };
 
 #endif

@@ -11,7 +11,7 @@ gameState::gameState() {}
 
 void gameState::startGame()
 {
-    chessboard.initDebugBoard();
+    chessboard.initsensorGridArray();
     chessboard.initBoard();
 
     // startFlag should come from a both boards function that checks. class gameLogic
@@ -32,6 +32,15 @@ void gameState::startGame()
 
     while (true)
     {
+<<<<<<< Updated upstream
         /* code */
+=======
+        Serial.println("Game running");
+        gl.gameRound();
+        chessboard.printBoard();
+        chessboard.printSensorGridArray();
+
+        delay(1000);
+>>>>>>> Stashed changes
     }
 }
