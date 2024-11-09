@@ -56,7 +56,6 @@ void board::initBoard()
 
 piece* (*board::getBoard())[8][8]{
 
-    Serial.println("getBoard exectued");
     return &gameBoard;
 }
 
