@@ -34,14 +34,11 @@ bool gameLogic::startConditionValidFlag()
   Serial.println("Passflag: " + String(passFlag));
   // return passFlag == 64;
   return passFlag == 32;
-
-  //return chessboard.startConditionValidFlag();
 }
 
 bool gameLogic::didPieceMove()
 {
 
-  // Read
   chessboard.readBoard();
   bool moved = chessboard.storePrevReadingAndCompare();
   
