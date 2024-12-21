@@ -13,12 +13,12 @@ class gameLogic
 public:
     gameLogic();
 
-    registerBoardState();   //update memory to the current state of Piece* array. 
+    bool startConditionValidFlag();
+    
+    void registerBoardState();   //update memory to the current state of Piece* array. 
                             //We need this before we can implement the capture mechanic. 
                             //And after check & checkmate
 
-
-    bool startConditionValidFlag();
 
     bool didPieceMove();
     bool wasItWhite();

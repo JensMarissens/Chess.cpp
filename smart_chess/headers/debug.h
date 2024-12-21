@@ -7,10 +7,8 @@ class debug
 public:
     debug();
 
-    void initDebugBoard();
-    void printDebugBoard();
-    
-    char debugBoard[8][8];
+    void printBoard();
+
 };
 
 #endif

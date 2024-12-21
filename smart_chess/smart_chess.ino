@@ -4,7 +4,7 @@
 gameState gs;
 gameLogic glo;
 
-bool startGame = true; // false;
+bool startGame = true; // false;  temporary placeholder variable
 int EN = 3;
 
 void setup()

@@ -1,0 +1,9 @@
+INO file just sets the IO pins.
+
+Gamestate (gs) class startGame() gets called.
+gs checks if the board setup is valid with startConditionValidFlag().
+
+Gamelogic function gameRound() loops until game over.
+
+
+gameRound needs to validate move and update board/write to pgn

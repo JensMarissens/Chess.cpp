@@ -25,9 +25,8 @@ void gameState::startGame()
     {
         Serial.println("Game running");
         gl.gameRound();
+
         chessboard.printBoard();
         chessboard.printsensorReadingsGrid();
-
-        delay(1000);
     }
 }

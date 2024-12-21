@@ -10,6 +10,8 @@ int coordArray[4];
 int turn = 1;
 piece* (*logicBoard)[8][8];
 
+
+
 bool gameLogic::startConditionValidFlag()
 {
   int passFlag = 0;
@@ -36,6 +38,31 @@ bool gameLogic::startConditionValidFlag()
   return passFlag == 32;
 }
 
+void gameLogic::gameRound() // does nothing so far
+{
+  /*Trying to clean up, again
+  
+  if(!whitePieceMoved()){
+    return;
+  }
+  if(!validMove()){
+    return
+  }
+
+  */
+
+  bool whitePlayed = false;
+
+  bool moved = didPieceMove();
+  bool white = wasItWhite();
+
+  Serial.print(white ? "White " : "Black ");
+  Serial.println(moved ? "moved" : "didn't move");
+}
+
+
+
+
 bool gameLogic::didPieceMove()
 {
 
@@ -56,16 +83,4 @@ void gameLogic::storeMove(bool isValid)
 {
   pgn.writePGNArray(String(turn) + ". " + String(type) + "r9");
   turn++;
-}
-
-void gameLogic::gameRound() // does nothing so far
-{
-
-  bool whitePlayed = false;
-
-  bool moved = didPieceMove();
-  bool white = wasItWhite();
-
-  Serial.print(white ? "White " : "Black ");
-  Serial.println(moved ? "moved" : " didn't move");
 }

@@ -16,30 +16,23 @@ private:
 public:
   board();
 
-  piece *gameBoard[8][8]; // Get this shit implemnted.
-
-  char startCondition[8][8] = {
-      {'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'},
-      {'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
-      {'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'},
-      {'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'},
-      {'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'},
-      {'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'},
-      {'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
-      {'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}};
+  piece *gameBoard[8][8]; 
 
   void initBoard();
   void readBoard();
   bool storePrevReadingAndCompare();
-  char writeBoard(int reading);
+  void updateBoard();
 
-  piece *(*getBoard())[8][8];
+  char writeSensorReadingsgrid(int reading);
+
+  piece *(*getBoard())[8][8]; //??
 
   void printBoard();
 
   /*DEBUG FUNCTIONS PARAMS*/
   char sensorReadingsGrid[8][8];
   char tempStorage[8][8];
+  int coordArray[4];
   /*END DEBUG FUNCTIONS PARAMS*/
 
   /*DEBUG FUNCTIONS VARS*/

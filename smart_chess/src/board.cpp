@@ -54,7 +54,8 @@ void board::initBoard()
     }
 }
 
-piece* (*board::getBoard())[8][8]{
+piece *(*board::getBoard())[8][8]
+{
 
     return &gameBoard;
 }
@@ -74,10 +75,10 @@ void board::readBoard()
         digitalWrite(6, S2);
         digitalWrite(7, S3);
 
-        sensorReadingsRaw[15 - i] = writeBoard(0);
-        sensorReadingsRaw[31 - i] = writeBoard(1);
-        sensorReadingsRaw[47 - i] = writeBoard(2);
-        sensorReadingsRaw[63 - i] = writeBoard(3);
+        sensorReadingsRaw[15 - i] = writeSensorReadingsgrid(0);
+        sensorReadingsRaw[31 - i] = writeSensorReadingsgrid(1);
+        sensorReadingsRaw[47 - i] = writeSensorReadingsgrid(2);
+        sensorReadingsRaw[63 - i] = writeSensorReadingsgrid(3);
     }
 
     for (int col = 0; col < 4; col++) // Rewrite and add to above array? Or keep seperate for readability?
@@ -94,36 +95,70 @@ void board::readBoard()
     }
 }
 
-bool board::storePrevReadingAndCompare(){
+bool board::storePrevReadingAndCompare()
+{
     for (size_t i = 0; i < 8; i++)
-  {
-    for (size_t j = 0; j < 8; j++)
     {
-      tempStorage[i][j] = sensorReadingsGrid[i][j]; // old sensorReadingsGridVal, contains the ORIGINAL POSITION.
+        for (size_t j = 0; j < 8; j++)
+        {
+            tempStorage[i][j] = sensorReadingsGrid[i][j]; // old sensorReadingsGridVal, contains the ORIGINAL POSITION.
+        }
     }
-  }
 
-  // Reread
-  Serial.println("Reading again in 3s:");
-  delay(3000);
-  readBoard();
+    // Reread
+    Serial.println("Reading again in 3s:");
+    delay(3000);
+    readBoard();
 
-  int x = 0;
+    int x = 0;
 
-  for (int i = 0; i < 8; i++)
-  {
-    for (int j = 0; j < 8; j++)
+    for (int i = 0; i < 8; i++)
     {
-      if (sensorReadingsGrid[i][j] != tempStorage[i][j])
-      {
-        x++;
-      }
+        for (int j = 0; j < 8; j++)
+        {
+            if (sensorReadingsGrid[i][j] != tempStorage[i][j])
+            {
+                if (sensorReadingsGrid[i][j] == 'X')
+                {
+                    coordArray[0] = i;
+                    coordArray[1] = j;
+                }
+                else
+                {
+                    coordArray[2] = i;
+                    coordArray[3] = j;
+                }
+
+                // coordArray[x] = 8 - i;
+                // coordArray[x + 1] = j + 1;
+
+                Serial.print(coordArray[x]);
+                Serial.print(coordArray[x + 1]);
+                Serial.print(" to ");
+
+                updateBoard();
+
+                coordArray[0] = 9;
+                coordArray[1] = 9;
+                coordArray[2] = 9;
+                coordArray[3] = 9;
+
+                x += 2;
+            }
+        }
     }
-  }
-  return x == 2;
+    return x == 4;
 }
 
-char board::writeBoard(int pin)
+void board::updateBoard()
+{
+    int coords[4] = {coordArray[0], coordArray[1], coordArray[2], coordArray[3]};
+
+    gameBoard[coords[2]][coords[3]] = gameBoard[coords[0]][coords[1]];
+    gameBoard[coords[0]][coords[1]] = nullptr;
+}
+
+char board::writeSensorReadingsgrid(int pin)
 {
     return (analogRead(pin) > 700) ? 'W' : (analogRead(pin) < 300) ? 'B'
                                                                    : 'X';
@@ -158,7 +193,7 @@ void board::printBoard()
             }
             else
             {
-                Serial.print(char(254));
+                Serial.print(char(79));
                 Serial.print("\t");
             }
         }
